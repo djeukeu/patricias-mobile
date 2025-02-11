@@ -6,7 +6,7 @@ const Stack = createNativeStackNavigator();
 
 const CategoryNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="CategoryScreen">
       <Stack.Screen name="CategoryScreen" component={Category} />
     </Stack.Navigator>
   );
