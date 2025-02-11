@@ -1,13 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import config from './src/config';
+import Navigation from './src/Navigation';
 
 const App = () => {
-  return (
-    <View>
-      <Text>{config.env}</Text>
-    </View>
-  );
+  return <Navigation />;
 };
 
 export default App;
