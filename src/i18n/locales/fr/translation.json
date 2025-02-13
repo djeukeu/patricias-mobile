@@ -1,9 +1,8 @@
 {
-    "tabs": {
-      "home": "Accueil",
-      "category": "Genre",
-      "cart": "Panier",
-      "profile": "Profil"
-    }
+  "tabs": {
+    "home": "Accueil",
+    "category": "Genre",
+    "cart": "Panier",
+    "profile": "Profil"
   }
-  
+}
