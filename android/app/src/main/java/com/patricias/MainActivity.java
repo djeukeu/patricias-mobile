@@ -1,4 +1,4 @@
-package com.patricias;
+package com.patriciaskinscentsecrets.shop;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

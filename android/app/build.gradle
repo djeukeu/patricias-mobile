@@ -73,9 +73,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.patricias"
+    namespace "com.patriciaskinscentsecrets.shop"
     defaultConfig {
-        applicationId "com.patricias"
+        applicationId "com.patriciaskinscentsecrets.shop"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

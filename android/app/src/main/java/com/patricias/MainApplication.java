@@ -1,4 +1,4 @@
-package com.patricias;
+package com.patriciaskinscentsecrets.shop;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
