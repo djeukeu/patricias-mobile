@@ -131,4 +131,10 @@ yarn-error.log
 # testing
 /coverage
 
-.env.development
+.env.**
+google-services.json
+signing.properties
+*.keystore
+key.json
+release-key.json
+sentry.properties
