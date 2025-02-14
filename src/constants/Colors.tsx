@@ -3,14 +3,14 @@ const Colors = {
     light: '',
     dark: '',
   },
-  primary: '',
+  primary: 'D9A6B3',
   primary_dark: '',
-  secondary: '',
+  secondary: '#EB4A0E',
   black: '#000000',
   white: '#ffffff',
   dark: '',
   transparent: 'transparent',
-  tertiary: '',
+  tertiary: 'E8240E',
   danger: '#ff0000',
 };
 
