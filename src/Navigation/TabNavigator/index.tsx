@@ -16,6 +16,18 @@ const TabNavigator = () => {
     return <Icon name="home" size={24} color={p.color} />;
   }, []);
 
+  const GenreIcon = useCallback((p: { color: string }) => {
+    return <Icon name="category" size={24} color={p.color} />;
+  }, []);
+
+  const CartIcon = useCallback((p: { color: string }) => {
+    return <Icon name="shopping-cart" size={24} color={p.color} />;
+  }, []);
+
+  const ProfileIcon = useCallback((p: { color: string }) => {
+    return <Icon name="person" size={24} color={p.color} />;
+  }, []);
+
   return (
     <Tab.Navigator initialRouteName="Home">
       <Tab.Screen
@@ -31,6 +43,7 @@ const TabNavigator = () => {
         component={CategoryNavigator}
         options={{
           tabBarLabel: t('tabs.category'),
+          tabBarIcon: GenreIcon,
         }}
       />
       <Tab.Screen
@@ -38,6 +51,7 @@ const TabNavigator = () => {
         component={CartNavigator}
         options={{
           tabBarLabel: t('tabs.cart'),
+          tabBarIcon: CartIcon,
         }}
       />
       <Tab.Screen
@@ -45,6 +59,7 @@ const TabNavigator = () => {
         component={ProfileNavigator}
         options={{
           tabBarLabel: t('tabs.profile'),
+          tabBarIcon: ProfileIcon,
         }}
       />
     </Tab.Navigator>
