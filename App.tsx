@@ -3,7 +3,7 @@ import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
 import i18nInstance from './src/i18n';
 import Navigation from './src/Navigation';
-import store from './src/store';
+import store from './src/redux';
 
 import 'moment/locale/fr';
 
