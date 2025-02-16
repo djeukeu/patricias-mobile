@@ -133,6 +133,7 @@ yarn-error.log
 
 .env.**
 google-services.json
+GoogleService-Info.plist
 signing.properties
 *.keystore
 key.json
