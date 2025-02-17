@@ -6,7 +6,7 @@ on:
     branches:
       - master
       - develop
-      - cd-pipeline
+      - feat/t
 
 jobs:
   android:
