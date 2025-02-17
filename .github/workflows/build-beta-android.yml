@@ -19,6 +19,7 @@ jobs:
         id: version_code
         run: |
           echo "::set-output name=number::$(git rev-list --count HEAD)"
+      - uses: xt0rted/setup-dotnet@v1.0.0
       - name: Install Gitversion
         uses: gittools/actions/gitversion/setup@v3.1.11
         with:
