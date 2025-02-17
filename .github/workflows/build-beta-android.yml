@@ -19,6 +19,9 @@ jobs:
         id: version_code
         run: |
           echo "::set-output name=number::$(git rev-list --count HEAD)"
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '3.1.x'
       - name: Install Gitversion
         uses: gittools/actions/gitversion/setup@v3.1.11
         with:
