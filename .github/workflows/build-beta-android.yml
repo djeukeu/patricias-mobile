@@ -40,9 +40,9 @@ jobs:
         with:
           configFilePath: GitVersion.yml
           useConfigFile: true
-      # - uses: ruby/setup-ruby@v1
-      #   with:
-      #     bundler-cache: true
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
       - name: Read node version
         id: nvmrc
         uses: browniebroke/read-nvmrc-action@v1
