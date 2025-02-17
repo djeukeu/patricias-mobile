@@ -43,7 +43,6 @@ branches:
     tracks-release-branches: false
     is-release-branch: false
     is-mainline: true
-
   feature:
     mode: ContinuousDelivery
     tag: alpha
