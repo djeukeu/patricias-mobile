@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - develop
+      - cd-pipeline
 
 jobs:
   android:
