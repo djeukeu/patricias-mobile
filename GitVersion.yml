@@ -46,7 +46,7 @@ branches:
     mode: ContinuousDelivery
     tag: alpha
     increment: Patch
-    regex: ^feat?[/-](?<BranchName>.+)
+    regex: ^feat?[/-]
     source-branches: [develop, master, hotfix]
     tracks-release-branches: false
     is-release-branch: false
