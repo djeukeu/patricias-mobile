@@ -13,4 +13,3 @@
 - `Install pods for ios, using:` cd ios/ && pod install
 - `Run the android version, using:` yarn android:dev
 - `Run the ios version, using:` yarn ios:dev
-

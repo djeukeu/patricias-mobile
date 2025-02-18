@@ -6,7 +6,6 @@ on:
     branches:
       - develop
 
-
 env:
   APP_ENV: ${{ vars.APP_ENV }}
   FIREBASE_ANDROID_TEST_GROUP: ${{ vars.FIREBASE_ANDROID_TEST_GROUP }}
