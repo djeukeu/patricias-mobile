@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "android:dev": "env-cmd -f .env.development react-native run-android",
+    "android:dev": "env-cmd -f .env.staging react-native run-android",
+    "android:beta": "cd ./android && bundle exec fastlane beta",
     "ios": "react-native run-ios",
     "ios:dev": "env-cmd -f .env.development react-native run-ios",
     "lint": "eslint .",
