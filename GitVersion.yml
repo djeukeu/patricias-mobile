@@ -20,7 +20,7 @@ branches:
   develop:
     mode: ContinuousDeployment
     tag: beta
-    increment: Inherit
+    increment: None
     prevent-increment-of-merged-branch-version: false
     track-merge-target: true
     regex: ^dev(elop)?(ment)?$
@@ -45,8 +45,8 @@ branches:
   feature:
     mode: ContinuousDelivery
     tag: alpha
-    increment: Patch
-    regex: ^feat?[/-](?<BranchName>.+)
+    increment: Inherit
+    regex: ^feat?[/-]
     source-branches: [develop, master, hotfix]
     tracks-release-branches: false
     is-release-branch: false
@@ -56,10 +56,10 @@ branches:
     regex: ^hotfix(es)?[/-]
     mode: ContinuousDelivery
     tag: beta
-    increment: Patch
+    increment: Inherit
     prevent-increment-of-merged-branch-version: false
     track-merge-target: false
-    source-branches: ['develop', 'main', 'support']
+    source-branches: ['develop', 'master', 'support']
     tracks-release-branches: false
     is-release-branch: false
     is-mainline: false
