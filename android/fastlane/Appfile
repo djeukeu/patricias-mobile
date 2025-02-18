@@ -1,2 +1,1 @@
-package_name(ENV['FIREBASE_ANDROID_TEST_GROUP'])
-
+package_name(ENV['ANDROID_PACKAGE_NAME'])
