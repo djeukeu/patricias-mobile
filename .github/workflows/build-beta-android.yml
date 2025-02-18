@@ -13,7 +13,7 @@ env:
   FIREBASE_ANDROID_TEST_GROUP: ${{ vars.FIREBASE_ANDROID_TEST_GROUP }}
   PACKAGE_NAME: ${{ secrets.ANDROID_PACKAGE_NAME }}
   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-  API_URL: ${{ secrets.STAGING_API_URL }}
+  FIREBASE_ANDROID_ID: ${{ secrets.FIREBASE_ANDROID_ID }}
 
 jobs:
   android:
@@ -40,9 +40,6 @@ jobs:
         with:
           configFilePath: GitVersion.yml
           useConfigFile: true
-      - uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
       - name: Read node version
         id: nvmrc
         uses: browniebroke/read-nvmrc-action@v1
@@ -54,17 +51,14 @@ jobs:
         run: |
           yarn
           npm install -g firebase-tools
-      - name: Cache node modules
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
       - name: Write google services file
         run: |
           cd android/app
           echo '${{ secrets.ANDROID_GOOGLE_SERVICES }}' > google-services.json
+      - name: setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
       - name: Install Fastlane
         run: gem install fastlane -N
       - name: Install Bundler
@@ -74,13 +68,6 @@ jobs:
           cd android
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
-      - name: Cache bundle packages
-        uses: actions/cache@v4
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
       - name: Fastlane Build
         run: |
           yarn android:beta
@@ -98,11 +85,17 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-
-      - name: Display GitVersion outputs
-        run: |
-          echo "version_code: ${{ steps.version_code.outputs.number }}"
-          echo "Major: ${{ steps.gitversion.outputs.major }}"
-          echo "Minor: ${{ steps.gitversion.outputs.minor }}"
-          echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.commitsSinceVersionSource }}"
-          echo $APP_ENV
+      - name: Cache bundle packages
+        uses: actions/cache@v4
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
