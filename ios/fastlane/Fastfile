@@ -59,14 +59,14 @@ platform :ios do
       localized_app_info: {
         "default": {
           feedback_email: "christian@djeukeu.com",
-          marketing_url: "https://djeukeu.com/",
-          privacy_policy_url: "https://djeukeu.com/",
+          marketing_url: "https://patriciaskinscentsecrets.com",
+          privacy_policy_url: "https://patriciaskinscentsecrets.com/privacy-policy/",
           description: "Default description",
         },
         "en-GB": {
           feedback_email: "christian@djeukeu.com",
-          marketing_url: "https://djeukeu.com/",
-          privacy_policy_url: "https://djeukeu.com/",
+          marketing_url: "https://patriciaskinscentsecrets.com",
+          privacy_policy_url: "https://patriciaskinscentsecrets.com/privacy-policy/",
           description: "Default description",
         },
       }
