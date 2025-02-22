@@ -2,11 +2,11 @@ default_platform(:ios)
 
 platform :ios do
 
-  # before_all do
+  before_all do
       
-  #   setup_ci
+    setup_ci
 
-  # end
+  end
 
   desc "Submit a new Beta apk for testing"
   lane :beta do
@@ -16,8 +16,7 @@ platform :ios do
     api_key = app_store_connect_api_key(
       key_id: ENV["APPLE_KEY_ID"],
       issuer_id: ENV["APPLE_KEY_ISSUER_ID"],
-      # key_filepath: "AuthKey_5FGVBZ7VQK.p8",
-      key_content: ENV["APPLE_KEY_CONTENT"],
+      key_filepath: "AuthKey_5FGVBZ7VQK.p8",
     )
 
     match(
@@ -43,7 +42,7 @@ platform :ios do
     )
 
     upload_to_testflight(
-      # api_key: api_key,
+      api_key: api_key,
       ipa: File.join(File.dirname(filename), File.basename(filename)),
       changelog: "Happy Testing !!!😄",
       groups: ENV["IOS_TEST_GROUPS"],
