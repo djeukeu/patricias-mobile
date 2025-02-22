@@ -63,6 +63,12 @@ platform :ios do
           privacy_policy_url: "https://djeukeu.com/",
           description: "Default description",
         },
+        "en-GB": {
+          feedback_email: "christian@djeukeu.com",
+          marketing_url: "https://djeukeu.com/",
+          privacy_policy_url: "https://djeukeu.com/",
+          description: "Default description",
+        },
       }
     )
 
