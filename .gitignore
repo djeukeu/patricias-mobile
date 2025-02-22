@@ -139,3 +139,4 @@ signing.properties
 key.json
 release-key.json
 sentry.properties
+*.p8
