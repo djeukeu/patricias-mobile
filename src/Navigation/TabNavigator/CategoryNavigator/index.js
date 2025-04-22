@@ -3,27 +3,26 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import Colors from '../../../constants/Colors';
 import { useAppTheme } from '../../../hooks';
-import Profile from '../../../screens/Profile';
+import Category from '../../../screens/Category';
 
 const Stack = createNativeStackNavigator();
 
-const ProfileNavigator = () => {
+const CategoryNavigator = () => {
   const { theme } = useAppTheme();
   const { t } = useTranslation();
 
   return (
     <Stack.Navigator
-      initialRouteName="ProfileScreen"
+      initialRouteName="CategoryScreen"
       screenOptions={{
         contentStyle: {
-          backgroundColor:
-            Colors.BACKGROUND[theme as keyof typeof Colors.BACKGROUND],
+          backgroundColor: Colors.BACKGROUND[theme],
         },
         headerBackTitle: t('back'),
       }}>
-      <Stack.Screen name="ProfileScreen" component={Profile} />
+      <Stack.Screen name="CategoryScreen" component={Category} />
     </Stack.Navigator>
   );
 };
 
-export default ProfileNavigator;
+export default CategoryNavigator;

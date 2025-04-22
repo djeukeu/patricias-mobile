@@ -12,19 +12,19 @@ const Tab = createMaterialBottomTabNavigator();
 const TabNavigator = () => {
   const { t } = useTranslation();
 
-  const HomeIcon = useCallback((p: { color: string }) => {
+  const HomeIcon = useCallback((p) => {
     return <Icon name="home" size={24} color={p.color} />;
   }, []);
 
-  const GenreIcon = useCallback((p: { color: string }) => {
+  const GenreIcon = useCallback((p) => {
     return <Icon name="category" size={24} color={p.color} />;
   }, []);
 
-  const CartIcon = useCallback((p: { color: string }) => {
+  const CartIcon = useCallback((p) => {
     return <Icon name="shopping-cart" size={24} color={p.color} />;
   }, []);
 
-  const ProfileIcon = useCallback((p: { color: string }) => {
+  const ProfileIcon = useCallback((p) => {
     return <Icon name="person" size={24} color={p.color} />;
   }, []);
 

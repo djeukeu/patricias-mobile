@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { useColorScheme } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
+import { useDispatch } from 'react-redux';
 import AppNavigator from './AppNavigator';
-import { useAppDispatch } from '../hooks';
 import { setTheme } from '../redux/slices/theme';
 
 const Navigation = () => {
   const appTheme = useColorScheme();
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const setup = Promise.all([dispatch(setTheme(appTheme))]);

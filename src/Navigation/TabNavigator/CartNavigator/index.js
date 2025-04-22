@@ -3,27 +3,26 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import Colors from '../../../constants/Colors';
 import { useAppTheme } from '../../../hooks';
-import Category from '../../../screens/Category';
+import Cart from '../../../screens/Cart';
 
 const Stack = createNativeStackNavigator();
 
-const CategoryNavigator = () => {
+const CartNavigator = () => {
   const { theme } = useAppTheme();
   const { t } = useTranslation();
 
   return (
     <Stack.Navigator
-      initialRouteName="CategoryScreen"
+      initialRouteName="CartScreen"
       screenOptions={{
         contentStyle: {
-          backgroundColor:
-            Colors.BACKGROUND[theme as keyof typeof Colors.BACKGROUND],
+          backgroundColor: Colors.BACKGROUND[theme],
         },
         headerBackTitle: t('back'),
       }}>
-      <Stack.Screen name="CategoryScreen" component={Category} />
+      <Stack.Screen name="CartScreen" component={Cart} />
     </Stack.Navigator>
   );
 };
 
-export default CategoryNavigator;
+export default CartNavigator;

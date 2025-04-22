@@ -1,9 +1,4 @@
-interface ErrorType {
-  code: string;
-  message: string;
-}
-
-const ErrorHandling = (error: string): ErrorType => {
+const ErrorHandling = (error) => {
   switch (error) {
     case 'USER_NOT_FOUND':
       return {

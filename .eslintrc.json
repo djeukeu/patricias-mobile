@@ -2,15 +2,12 @@
   "root": true,
   "extends": [
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
     "@react-native",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:import/typescript",
     "prettier"
   ],
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -18,13 +15,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "react-hooks",
-    "@typescript-eslint",
-    "prettier",
-    "import"
-  ],
+  "plugins": ["react", "react-hooks", "prettier", "import"],
   "rules": {
     "semi": ["error", "always"],
     "linebreak-style": ["error", "unix"],
@@ -65,12 +56,8 @@
     ]
   },
   "settings": {
-    "import/resolver": {
-      "typescript": true,
-      "node": {
-        "paths": ["./src"]
-      },
-      "babel-module": {}
+    "react": {
+      "version": "detect"
     }
   }
 }
