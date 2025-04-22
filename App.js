@@ -6,6 +6,7 @@ import Navigation from './src/Navigation';
 import store from './src/redux';
 
 import 'moment/locale/fr';
+// console.log('App');
 
 const App = () => {
   return (
