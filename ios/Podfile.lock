@@ -1742,6 +1742,8 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
+  - react-native-splash-screen (3.3.0):
+    - React-Core
   - react-native-vector-icons-material-design-icons (12.3.0)
   - react-native-vector-icons-material-icons (12.3.0)
   - React-NativeModulesApple (0.80.2):
@@ -2326,6 +2328,7 @@ DEPENDENCIES:
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
   - react-native-config (from `../node_modules/react-native-config`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - "react-native-vector-icons-material-design-icons (from `../node_modules/@react-native-vector-icons/material-design-icons`)"
   - "react-native-vector-icons-material-icons (from `../node_modules/@react-native-vector-icons/material-icons`)"
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
@@ -2453,6 +2456,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-config"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-splash-screen:
+    :path: "../node_modules/react-native-splash-screen"
   react-native-vector-icons-material-design-icons:
     :path: "../node_modules/@react-native-vector-icons/material-design-icons"
   react-native-vector-icons-material-icons:
@@ -2567,6 +2572,7 @@ SPEC CHECKSUMS:
   React-microtasksnativemodule: 8ff9cb220a8efa625b5885996bd69e69db9edf02
   react-native-config: f1dde39f8468ad922fc7e8bd4308c8e6223d5ee8
   react-native-safe-area-context: 68d1363b8354472a961aa6861ba8451beaf9a810
+  react-native-splash-screen: 95994222cc95c236bd3cdc59fe45ed5f27969594
   react-native-vector-icons-material-design-icons: c502df5b988ce85d6c7d2b7ee909818315760b82
   react-native-vector-icons-material-icons: eff7417eb1ac6c740ab802837ad34b8233fded34
   React-NativeModulesApple: 37c08c3c54db55854de816b0df0f3683832be35a
@@ -2606,4 +2612,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: a621f747ca1f3ae9c38e90083fc95733a0f15963
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2
