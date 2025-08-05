@@ -1,11 +1,14 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { Suspense } from 'react';
+import { PaperProvider } from 'react-native-paper';
+import Navigation from './src/navigation';
 
 const App = () => {
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <Suspense>
+      <PaperProvider>
+        <Navigation />
+      </PaperProvider>
+    </Suspense>
   );
 };
 

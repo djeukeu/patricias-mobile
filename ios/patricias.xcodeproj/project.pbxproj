@@ -359,7 +359,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.patriciaskinscentsecrets.shop;
-				PRODUCT_NAME = patricias;
+				PRODUCT_NAME = Patricias;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -386,7 +386,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.patriciaskinscentsecrets.shop;
-				PRODUCT_NAME = patricias;
+				PRODUCT_NAME = Patricias;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
