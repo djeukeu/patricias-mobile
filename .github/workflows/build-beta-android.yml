@@ -51,10 +51,10 @@ jobs:
         run: |
           cd android/app
           echo '${{ secrets.ANDROID_GOOGLE_SERVICES }}' > google-services.json
-      # - name: setup Ruby
-      #   uses: ruby/setup-ruby@v1
-      #   with:
-      #     bundler-cache: true
+      - name: setup Ruby
+        uses: ruby/setup-ruby-pkgs@v1
+        with:
+          bundler-cache: true
       - name: Install Fastlane
         run: gem install fastlane -N
       - name: Install Bundler
