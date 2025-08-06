@@ -89,9 +89,9 @@ const styles = StyleSheet.create({
     borderTopColor: Platform.OS === 'android' && MD2Colors.grey500,
     borderTopWidth: Platform.OS === 'android' && 0.5,
     shadowColor: Colors.black,
-    shadowOffset: { height: 2, width: 2 },
-    shadowOpacity: 2,
-    shadowRadius: 2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3,
   },
 });
 
