@@ -1,0 +1,9 @@
+{
+  "tabs": {
+    "home": "Home",
+    "wishlist": "Wishlist",
+    "cart": "Cart",
+    "setting": "Setting"
+  },
+  "back": "Back"
+}
