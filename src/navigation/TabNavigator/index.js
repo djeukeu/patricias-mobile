@@ -29,7 +29,8 @@ const TabNavigator = () => {
           activeIndicatorStyle={{ backgroundColor: Colors.primary }}
           barStyle={styles.barStyle}
         />
-      )}>
+      )}
+      screenOptions={{ headerShown: false }}>
       <Tab.Screen
         name="Home"
         component={HomeNavigator}

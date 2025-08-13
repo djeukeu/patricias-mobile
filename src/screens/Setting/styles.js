@@ -1,10 +1,21 @@
 import { StyleSheet } from 'react-native';
+import Fonts from '../../constants/Fonts';
 
 const styles = StyleSheet.create({
-  screen: {
+  itemtxt: {
+    fontFamily: Fonts.medium,
+  },
+  rightContainer: {
     alignItems: 'center',
+    flexDirection: 'row',
+  },
+  rightContainerTxt: {
+    fontFamily: Fonts.medium,
+    marginRight: 4,
+    textTransform: 'capitalize',
+  },
+  screen: {
     flex: 1,
-    justifyContent: 'center',
   },
 });
 
