@@ -21,6 +21,8 @@
     "chooseLanguange": "Choose a Language",
     "cancel": "Cancel",
     "en": "English",
-    "fr": "French"
+    "fr": "French",
+    "select": "Change currency",
+    "searchCurrency": "Search currency"
   }
 }

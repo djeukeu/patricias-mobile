@@ -1,8 +1,11 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { useState, Fragment } from 'react';
 import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, Text, View, Linking } from 'react-native';
+import CurrencyPicker from 'react-native-currency-picker';
 import { List, MD2Colors } from 'react-native-paper';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styles from './styles';
 import LanguageDialog from '../../components/LanguageDialog';
 import config from '../../config';
@@ -24,9 +27,10 @@ const ListRightItem = ({ text }) => {
 const Setting = () => {
   const { t, i18n } = useTranslation();
   const [lngDialog, setLngDialog] = useState(false);
-  let currencyPickerRef;
+  const insets = useSafeAreaInsets();
+  const [currency, setCurrency] = useState('EUR');
 
-  console.log(currencyPickerRef);
+  let currencyPickerRef;
 
   const closeLngDialog = () => {
     setLngDialog(false);
@@ -38,7 +42,7 @@ const Setting = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <ScrollView style={styles.screen}>
         <List.Item
           rippleColor={Colors.transparent}
@@ -47,7 +51,7 @@ const Setting = () => {
           left={(props) => (
             <List.Icon {...props} icon="currency-usd" color={Colors.primary} />
           )}
-          right={ListRightItem}
+          right={() => <ListRightItem text={currency} />}
           onPress={() => {
             currencyPickerRef.open();
           }}
@@ -155,7 +159,52 @@ const Setting = () => {
         changeLanguage={changeLanguage}
         initValue={i18n.languages[0]}
       />
-    </Fragment>
+      <CurrencyPicker
+        currencyPickerRef={(ref) => {
+          currencyPickerRef = ref;
+        }}
+        enable={false}
+        darkMode={false}
+        currencyCode={currency}
+        showFlag={true}
+        showCurrencyName={true}
+        showCurrencyCode={true}
+        onSelectCurrency={(data) => {
+          setCurrency(data.code);
+        }}
+        showNativeSymbol={false}
+        showSymbol={false}
+        containerStyle={{
+          container: {},
+          flagWidth: 25,
+          currencyCodeStyle: {},
+          currencyNameStyle: {},
+          symbolStyle: {},
+          symbolNativeStyle: {},
+        }}
+        modalStyle={{
+          container: {
+            ...styles.currencyContainer,
+            paddingTop: insets.top,
+            paddingBottom: insets.bottom,
+          },
+          searchStyle: styles.currencySearch,
+          tileStyle: styles.currencyText,
+          itemStyle: {
+            itemContainer: styles.currencyContainer,
+            flagWidth: 25,
+            currencyCodeStyle: styles.currencyText,
+            currencyNameStyle: styles.currencyText,
+            symbolStyle: {},
+            symbolNativeStyle: {},
+          },
+        }}
+        title={t('setting.select')}
+        searchPlaceholder={t('setting.searchCurrency')}
+        showCloseButton={true}
+        showModalTitle={true}
+      />
+    </>
   );
 };
 

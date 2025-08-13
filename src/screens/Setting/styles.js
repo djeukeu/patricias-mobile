@@ -1,7 +1,19 @@
 import { StyleSheet } from 'react-native';
+import { MD2Colors } from 'react-native-paper';
+import Colors from '../../constants/Colors';
 import Fonts from '../../constants/Fonts';
 
 const styles = StyleSheet.create({
+  currencyContainer: {
+    backgroundColor: Colors.white,
+  },
+  currencySearch: {
+    backgroundColor: MD2Colors.grey100,
+  },
+  currencyText: {
+    color: Colors.black,
+    fontFamily: Fonts.medium,
+  },
   itemtxt: {
     fontFamily: Fonts.medium,
   },
@@ -11,8 +23,6 @@ const styles = StyleSheet.create({
   },
   rightContainerTxt: {
     fontFamily: Fonts.medium,
-    marginRight: 4,
-    textTransform: 'capitalize',
   },
   screen: {
     flex: 1,
