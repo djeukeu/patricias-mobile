@@ -23,6 +23,7 @@
     "en": "English",
     "fr": "French",
     "select": "Change currency",
-    "searchCurrency": "Search currency"
+    "searchCurrency": "Search currency",
+    "system": "System"
   }
 }

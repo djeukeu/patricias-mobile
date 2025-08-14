@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
-import { useColorScheme } from 'react-native';
 import HeaderLeft from '../../../components/HeaderLeft';
 import Colors from '../../../constants/Colors';
 import Fonts from '../../../constants/Fonts';
+import { ThemeContext } from '../../../context/ThemeProvider';
 import Setting from '../../../screens/Setting';
 
 const Stack = createNativeStackNavigator();
 
 const SettingNavigator = () => {
-  const theme = useColorScheme();
+  const themeCtx = useContext(ThemeContext);
   const { t } = useTranslation();
+  const theme = themeCtx.theme;
 
   return (
     <Stack.Navigator

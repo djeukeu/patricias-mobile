@@ -12,11 +12,16 @@ import ThemeDialog from '../../components/ThemeDialog';
 import config from '../../config';
 import Colors from '../../constants/Colors';
 import { CurrencyContext } from '../../context/CurrencyProvider';
+import { ThemeContext } from '../../context/ThemeProvider';
 
-const ListRightItem = ({ text }) => {
+const ListRightItem = ({ text, textStyle }) => {
   return (
     <View style={styles.rightContainer}>
-      {text && <Text style={styles.rightContainerTxt}>{text}</Text>}
+      {text && (
+        <Text style={{ ...styles.rightContainerTxt, ...textStyle }}>
+          {text}
+        </Text>
+      )}
       <MaterialIcons
         name="keyboard-arrow-right"
         color={MD2Colors.grey600}
@@ -32,6 +37,7 @@ const Setting = () => {
   const [themeDialog, setThemeDialog] = useState(false);
   const insets = useSafeAreaInsets();
   const currencyCtx = useContext(CurrencyContext);
+  const themeCtx = useContext(ThemeContext);
 
   let currencyPickerRef;
 
@@ -48,6 +54,11 @@ const Setting = () => {
     i18n.changeLanguage(language);
   };
 
+  const changeThemeMode = (mode) => {
+    setThemeDialog(false);
+    themeCtx.changeTheme(mode);
+  };
+
   return (
     <>
       <ScrollView style={styles.screen}>
@@ -58,7 +69,12 @@ const Setting = () => {
           left={(props) => (
             <List.Icon {...props} icon="currency-usd" color={Colors.primary} />
           )}
-          right={() => <ListRightItem text={currencyCtx.currency} />}
+          right={() => (
+            <ListRightItem
+              text={currencyCtx.currency}
+              textStyle={{ textTransform: 'uppercase' }}
+            />
+          )}
           onPress={() => {
             currencyPickerRef.open();
           }}
@@ -71,7 +87,10 @@ const Setting = () => {
             <List.Icon {...props} icon="translate" color={Colors.primary} />
           )}
           right={() => (
-            <ListRightItem text={t(`setting.${i18n.languages[0]}`)} />
+            <ListRightItem
+              text={t(`setting.${i18n.languages[0]}`)}
+              textStyle={{ textTransform: 'capitalize' }}
+            />
           )}
           onPress={() => {
             setLngDialog(true);
@@ -88,7 +107,12 @@ const Setting = () => {
               color={Colors.primary}
             />
           )}
-          right={ListRightItem}
+          right={() => (
+            <ListRightItem
+              text={themeCtx.mode}
+              textStyle={{ textTransform: 'capitalize' }}
+            />
+          )}
           onPress={() => {
             setThemeDialog(true);
           }}
@@ -171,8 +195,8 @@ const Setting = () => {
       <ThemeDialog
         visible={themeDialog}
         hideDialog={closeThemeDialog}
-        // changeLanguage={changeLanguage}
-        initValue={'system'}
+        changeTheme={changeThemeMode}
+        initValue={themeCtx.mode}
       />
       <CurrencyPicker
         currencyPickerRef={(ref) => {
