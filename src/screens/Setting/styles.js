@@ -4,6 +4,11 @@ import Colors from '../../constants/Colors';
 import Fonts from '../../constants/Fonts';
 
 const styles = StyleSheet.create({
+  appVersion: {
+    color: Colors.black,
+    fontFamily: Fonts.semiBold,
+    fontSize: 16,
+  },
   currencyContainer: {
     backgroundColor: Colors.white,
   },
@@ -26,6 +31,11 @@ const styles = StyleSheet.create({
   },
   screen: {
     flex: 1,
+  },
+  versionWrapper: {
+    alignItems: 'center',
+    marginBottom: 24,
+    marginTop: 'auto',
   },
 });
 

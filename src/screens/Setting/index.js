@@ -2,7 +2,7 @@
 import React, { useState, Fragment, useContext } from 'react';
 import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, Text, View, Linking } from 'react-native';
+import { Text, View, Linking } from 'react-native';
 import CurrencyPicker from 'react-native-currency-picker';
 import { List, MD2Colors } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -39,6 +39,15 @@ const Setting = () => {
   const currencyCtx = useContext(CurrencyContext);
   const themeCtx = useContext(ThemeContext);
 
+  let tag;
+  if (config.env === 'development') {
+    tag = '-alpha';
+  } else if (config.env === 'staging') {
+    tag = '-beta';
+  } else {
+    tag = '';
+  }
+
   let currencyPickerRef;
 
   const closeLngDialog = () => {
@@ -61,7 +70,7 @@ const Setting = () => {
 
   return (
     <>
-      <ScrollView style={styles.screen}>
+      <View style={styles.screen}>
         <List.Item
           rippleColor={Colors.transparent}
           titleStyle={styles.itemtxt}
@@ -185,7 +194,13 @@ const Setting = () => {
             Linking.openURL(config.api_url + 'faq');
           }}
         />
-      </ScrollView>
+        <View style={styles.versionWrapper}>
+          <Text style={styles.appVersion}>
+            Version: {config.app_version}
+            {tag}
+          </Text>
+        </View>
+      </View>
       <LanguageDialog
         visible={lngDialog}
         hideDialog={closeLngDialog}
