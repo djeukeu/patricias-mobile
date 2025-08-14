@@ -1,0 +1,29 @@
+{
+  "tabs": {
+    "home": "Home",
+    "wishlist": "Wishlist",
+    "cart": "Cart",
+    "setting": "Settings"
+  },
+  "back": "Back",
+  "setting": {
+    "txt": "Settings",
+    "currency": "Currency",
+    "language": "Language",
+    "appearance": "Appearance",
+    "newsletter": "Newsletter",
+    "help": "Help",
+    "privacy": "Privacy Policy",
+    "terms": "Terms and Conditions",
+    "faqs": "FAQs",
+    "light": "Light",
+    "dark": "Dark",
+    "chooseLanguange": "Choose a Language",
+    "cancel": "Cancel",
+    "en": "English",
+    "fr": "French",
+    "select": "Change currency",
+    "searchCurrency": "Search currency",
+    "system": "System"
+  }
+}

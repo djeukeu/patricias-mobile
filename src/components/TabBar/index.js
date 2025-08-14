@@ -22,8 +22,8 @@ const TabBar = ({
       activeColor={activeColor}
       inactiveColor={inactiveColor}
       theme={theme}
+      style={barStyle}
       activeIndicatorStyle={activeIndicatorStyle}
-      barStyle={barStyle}
       onTabPress={({ route, preventDefault }) => {
         const event = navigation.emit({
           type: 'tabPress',

@@ -1,0 +1,9 @@
+{
+  "tabs": {
+    "home": "Accueil",
+    "wishlist": "Souhaits",
+    "cart": "Panier",
+    "setting": "Paramètres"
+  },
+  "back": "Retour"
+}

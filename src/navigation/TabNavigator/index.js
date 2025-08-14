@@ -1,6 +1,7 @@
 import React from 'react';
 import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useTranslation } from 'react-i18next';
 import { StyleSheet, Platform } from 'react-native';
 import { MD2Colors } from 'react-native-paper';
 import CartNavigator from './CartNavigator';
@@ -14,6 +15,8 @@ import Fonts from '../../constants/Fonts';
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+  const { t } = useTranslation();
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -26,7 +29,8 @@ const TabNavigator = () => {
           activeIndicatorStyle={{ backgroundColor: Colors.primary }}
           barStyle={styles.barStyle}
         />
-      )}>
+      )}
+      screenOptions={{ headerShown: false }}>
       <Tab.Screen
         name="Home"
         component={HomeNavigator}
@@ -38,6 +42,7 @@ const TabNavigator = () => {
               color={p.focused ? Colors.white : p.color}
             />
           ),
+          tabBarLabel: t('tabs.home'),
         }}
       />
       <Tab.Screen
@@ -51,6 +56,7 @@ const TabNavigator = () => {
               color={p.focused ? Colors.white : p.color}
             />
           ),
+          tabBarLabel: t('tabs.wishlist'),
         }}
       />
       <Tab.Screen
@@ -64,6 +70,7 @@ const TabNavigator = () => {
               color={p.focused ? Colors.white : p.color}
             />
           ),
+          tabBarLabel: t('tabs.cart'),
         }}
       />
       <Tab.Screen
@@ -77,6 +84,7 @@ const TabNavigator = () => {
               color={p.focused ? Colors.white : p.color}
             />
           ),
+          tabBarLabel: t('tabs.setting'),
         }}
       />
     </Tab.Navigator>
@@ -89,9 +97,9 @@ const styles = StyleSheet.create({
     borderTopColor: Platform.OS === 'android' && MD2Colors.grey500,
     borderTopWidth: Platform.OS === 'android' && 0.5,
     shadowColor: Colors.black,
-    shadowOffset: { height: 2, width: 2 },
-    shadowOpacity: 2,
-    shadowRadius: 2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3,
   },
 });
 
