@@ -8,7 +8,7 @@ import {
 export const CurrencyContext = createContext({
   currency: '',
   initCurrency: () => {},
-  toggleCurrency: () => {},
+  changeCurrency: () => {},
 });
 
 const CurrencyProvider = (props) => {
@@ -25,7 +25,7 @@ const CurrencyProvider = (props) => {
     }
   }, []);
 
-  const toggleCurrency = useCallback(async (cur) => {
+  const changeCurrency = useCallback(async (cur) => {
     setCurrency(cur);
     await saveCurrency(cur);
   }, []);
@@ -35,7 +35,7 @@ const CurrencyProvider = (props) => {
       value={{
         currency,
         initCurrency,
-        toggleCurrency,
+        changeCurrency,
       }}>
       {props.children}
     </CurrencyContext.Provider>

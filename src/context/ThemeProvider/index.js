@@ -31,7 +31,6 @@ const ThemeProvider = (props) => {
   useEffect(() => {
     const subscriber = Appearance.addChangeListener((event) => {
       setTheme(mode == 'system' ? (event.colorScheme ?? 'light') : mode);
-      // themeCtx.mode == 'system' && themeCtx.changeTheme(event.colorScheme);
     });
     return () => {
       subscriber.remove();

@@ -24,14 +24,18 @@ const Navigation = () => {
   });
 
   useEffect(() => {
+    storeLng(i18n.language);
+  }, [i18n.language]);
+
+  useEffect(() => {
     const setup = Promise.all([
       currencyCtx.initCurrency(),
       themeCtx.initTheme(),
-      storeLng(i18n.language),
     ]);
     setup.then(() => {
       SplashScreen.hide();
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
