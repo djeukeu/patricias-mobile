@@ -10,15 +10,15 @@ import theme from './src/theme';
 const App = () => {
   return (
     <Suspense>
-      <PaperProvider theme={theme}>
-        <I18nextProvider i18n={i18nInstance}>
-          <ThemeProvider>
-            <CurrencyProvider>
+      <ThemeProvider>
+        <CurrencyProvider>
+          <PaperProvider theme={theme}>
+            <I18nextProvider i18n={i18nInstance}>
               <Navigation />
-            </CurrencyProvider>
-          </ThemeProvider>
-        </I18nextProvider>
-      </PaperProvider>
+            </I18nextProvider>
+          </PaperProvider>
+        </CurrencyProvider>
+      </ThemeProvider>
     </Suspense>
   );
 };
