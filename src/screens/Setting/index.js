@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useContext } from 'react';
 import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, Text, View, Linking } from 'react-native';
@@ -8,8 +8,10 @@ import { List, MD2Colors } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styles from './styles';
 import LanguageDialog from '../../components/LanguageDialog';
+import ThemeDialog from '../../components/ThemeDialog';
 import config from '../../config';
 import Colors from '../../constants/Colors';
+import { CurrencyContext } from '../../context/CurrencyProvider';
 
 const ListRightItem = ({ text }) => {
   return (
@@ -27,13 +29,18 @@ const ListRightItem = ({ text }) => {
 const Setting = () => {
   const { t, i18n } = useTranslation();
   const [lngDialog, setLngDialog] = useState(false);
+  const [themeDialog, setThemeDialog] = useState(false);
   const insets = useSafeAreaInsets();
-  const [currency, setCurrency] = useState('EUR');
+  const currencyCtx = useContext(CurrencyContext);
 
   let currencyPickerRef;
 
   const closeLngDialog = () => {
     setLngDialog(false);
+  };
+
+  const closeThemeDialog = () => {
+    setThemeDialog(false);
   };
 
   const changeLanguage = (language) => {
@@ -51,7 +58,7 @@ const Setting = () => {
           left={(props) => (
             <List.Icon {...props} icon="currency-usd" color={Colors.primary} />
           )}
-          right={() => <ListRightItem text={currency} />}
+          right={() => <ListRightItem text={currencyCtx.currency} />}
           onPress={() => {
             currencyPickerRef.open();
           }}
@@ -82,7 +89,9 @@ const Setting = () => {
             />
           )}
           right={ListRightItem}
-          onPress={() => {}}
+          onPress={() => {
+            setThemeDialog(true);
+          }}
         />
         <List.Item
           rippleColor={Colors.transparent}
@@ -159,18 +168,24 @@ const Setting = () => {
         changeLanguage={changeLanguage}
         initValue={i18n.languages[0]}
       />
+      <ThemeDialog
+        visible={themeDialog}
+        hideDialog={closeThemeDialog}
+        // changeLanguage={changeLanguage}
+        initValue={'system'}
+      />
       <CurrencyPicker
         currencyPickerRef={(ref) => {
           currencyPickerRef = ref;
         }}
         enable={false}
         darkMode={false}
-        currencyCode={currency}
+        currencyCode={currencyCtx.currency}
         showFlag={true}
         showCurrencyName={true}
         showCurrencyCode={true}
         onSelectCurrency={(data) => {
-          setCurrency(data.code);
+          currencyCtx.toggleCurrency(data.code);
         }}
         showNativeSymbol={false}
         showSymbol={false}

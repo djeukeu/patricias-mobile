@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import {
   NavigationContainer,
   DarkTheme as NavigationDarkTheme,
@@ -8,9 +8,11 @@ import { useColorScheme } from 'react-native';
 import { adaptNavigationTheme } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
 import AppNavigator from './AppNavigator';
+import { CurrencyContext } from '../context/CurrencyProvider';
 
 const Navigation = () => {
   const theme = useColorScheme();
+  const currencyCtx = useContext(CurrencyContext);
 
   const { LightTheme, DarkTheme } = adaptNavigationTheme({
     reactNavigationLight: NavigationDefaultTheme,
@@ -18,7 +20,10 @@ const Navigation = () => {
   });
 
   useEffect(() => {
-    SplashScreen.hide();
+    const setup = Promise.all([currencyCtx.initCurrency()]);
+    setup.then(() => {
+      SplashScreen.hide();
+    });
   }, []);
 
   return (
