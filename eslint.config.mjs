@@ -43,12 +43,8 @@ export default defineConfig([
   },
   {
     files: ['**/*.{js,mjs,cjs}'],
-    extends: [importPlugin.flatConfigs.recommended],
+    extends: [importPlugin.flatConfigs['react-native']],
     rules: {
-      'import/namespace': 'off',
-      'import/no-unresolved': 'off',
-      'import/named': 'off',
-      'import/no-named-as-default-member': 'off',
       'import/order': [
         'error',
         {

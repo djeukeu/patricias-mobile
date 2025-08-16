@@ -1,5 +1,3 @@
-/* eslint-disable import/default */
-/* eslint-disable import/no-named-as-default */
 /* eslint-disable react-native/no-inline-styles */
 import React, { useState, Fragment, useContext } from 'react';
 import { MaterialIcons } from '@react-native-vector-icons/material-icons';
