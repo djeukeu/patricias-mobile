@@ -13,7 +13,7 @@ import ThemeDialog from '../../components/ThemeDialog';
 import config from '../../config';
 import Colors from '../../constants/Colors';
 import { CurrencyContext } from '../../context/CurrencyProvider';
-import { ThemeContext } from '../../context/ThemeProvider';
+import { useAppTheme } from '../../hooks';
 
 const ListRightItem = ({ text, textStyle }) => {
   return (
@@ -38,7 +38,7 @@ const Setting = () => {
   const [themeDialog, setThemeDialog] = useState(false);
   const insets = useSafeAreaInsets();
   const currencyCtx = useContext(CurrencyContext);
-  const themeCtx = useContext(ThemeContext);
+  const { changeTheme, preference } = useAppTheme();
   const appVersion = VersionCheck.getCurrentVersion();
 
   let tag;
@@ -67,7 +67,7 @@ const Setting = () => {
 
   const changeThemeMode = (mode) => {
     setThemeDialog(false);
-    themeCtx.changeTheme(mode);
+    changeTheme(mode);
   };
 
   return (
@@ -120,7 +120,7 @@ const Setting = () => {
           )}
           right={() => (
             <ListRightItem
-              text={themeCtx.mode}
+              text={preference}
               textStyle={{ textTransform: 'capitalize' }}
             />
           )}
@@ -213,7 +213,7 @@ const Setting = () => {
         visible={themeDialog}
         hideDialog={closeThemeDialog}
         changeTheme={changeThemeMode}
-        initValue={themeCtx.mode}
+        initValue={preference}
       />
       <CurrencyPicker
         currencyPickerRef={(ref) => {

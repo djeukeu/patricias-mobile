@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const key = 'userTheme';
 
-export const saveThemeMode = async (theme) => {
+export const saveThemePreference = async (theme) => {
   try {
     await AsyncStorage.setItem(key, theme);
   } catch (err) {
@@ -11,7 +11,7 @@ export const saveThemeMode = async (theme) => {
   }
 };
 
-export const getStoreThemeMode = async () => {
+export const getSaveThemePreference = async () => {
   try {
     const value = await AsyncStorage.getItem(key);
     return value;

@@ -1,46 +1,58 @@
-import React, { createContext, useCallback, useState, useEffect } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useState,
+  useEffect,
+  useMemo,
+} from 'react';
 import { Appearance, useColorScheme } from 'react-native';
-import { getStoreThemeMode, saveThemeMode } from '../../utils/theme';
+import { getSaveThemePreference, saveThemePreference } from '../../utils/theme';
 
 export const ThemeContext = createContext({
-  mode: '',
+  preference: '',
   theme: '',
   initTheme: () => {},
   changeTheme: () => {},
 });
 
 const ThemeProvider = (props) => {
-  const [theme, setTheme] = useState('');
-  const [mode, setMode] = useState('system');
-  const systemTheme = useColorScheme();
+  const system = useColorScheme();
+  const [preference, setPreference] = useState('system');
+  const [systemScheme, setSystemScheme] = useState(system);
 
   const initTheme = useCallback(async () => {
-    const themeMode = await getStoreThemeMode();
-    setMode(themeMode ?? 'system');
-    setTheme(themeMode == 'system' ? (systemTheme ?? 'light') : themeMode);
-    await saveThemeMode(mode);
+    const themeMode = await getSaveThemePreference();
+    if (
+      themeMode === 'light' ||
+      themeMode === 'dark' ||
+      themeMode === 'system'
+    ) {
+      setPreference(themeMode);
+    }
   }, []);
 
-  const changeTheme = useCallback(async (t) => {
-    setMode(t);
-    setTheme(t == 'system' ? (systemTheme ?? 'light') : t);
-    await saveThemeMode(t);
+  const changeTheme = useCallback(async (p) => {
+    setPreference(p);
+    await saveThemePreference(p);
   }, []);
 
   useEffect(() => {
     const subscriber = Appearance.addChangeListener((event) => {
-      setTheme(mode == 'system' ? (event.colorScheme ?? 'light') : mode);
+      setSystemScheme(event.colorScheme);
     });
-    return () => {
-      subscriber.remove();
-    };
+    return () => subscriber.remove();
   }, []);
+
+  const theme = useMemo(
+    () => (preference == 'system' ? (systemScheme ?? 'light') : preference),
+    [preference, systemScheme]
+  );
 
   return (
     <ThemeContext.Provider
       value={{
         theme,
-        mode,
+        preference,
         initTheme,
         changeTheme,
       }}>
