@@ -17,7 +17,7 @@ export const saveCurrency = async (currency) => {
   }
 };
 
-export const getStoreCurrency = async () => {
+export const getSaveCurrency = async () => {
   try {
     const value = await AsyncStorage.getItem(key);
     return value;

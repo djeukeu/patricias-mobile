@@ -226,7 +226,7 @@ const Setting = () => {
         showCurrencyName={true}
         showCurrencyCode={true}
         onSelectCurrency={(data) => {
-          currencyCtx.toggleCurrency(data.code);
+          currencyCtx.changeCurrency(data.code);
         }}
         showNativeSymbol={false}
         showSymbol={false}

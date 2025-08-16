@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useState } from 'react';
 import {
   getCurrency,
-  getStoreCurrency,
+  getSaveCurrency,
   saveCurrency,
 } from '../../utils/currency';
 
@@ -15,7 +15,7 @@ const CurrencyProvider = (props) => {
   const [currency, setCurrency] = useState('');
 
   const initCurrency = useCallback(async () => {
-    const storeCurrency = await getStoreCurrency();
+    const storeCurrency = await getSaveCurrency();
     if (storeCurrency) {
       setCurrency(storeCurrency);
     } else {
