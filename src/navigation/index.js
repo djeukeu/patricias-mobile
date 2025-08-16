@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import {
   NavigationContainer,
   DarkTheme as NavigationDarkTheme,
@@ -8,14 +8,14 @@ import { useTranslation } from 'react-i18next';
 import { adaptNavigationTheme } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
 import AppNavigator from './AppNavigator';
-import { CurrencyContext } from '../context/CurrencyProvider';
 import { useAppTheme } from '../hooks';
+import useAppCurrency from '../hooks/useAppCurrency';
 import { storeLng } from '../utils/language';
 
 const Navigation = () => {
-  const currencyCtx = useContext(CurrencyContext);
   const { i18n } = useTranslation();
   const { initTheme, theme } = useAppTheme();
+  const { initCurrency } = useAppCurrency();
 
   const { LightTheme, DarkTheme } = adaptNavigationTheme({
     reactNavigationLight: NavigationDefaultTheme,
@@ -27,7 +27,7 @@ const Navigation = () => {
   }, [i18n.language]);
 
   useEffect(() => {
-    const setup = Promise.all([currencyCtx.initCurrency(), initTheme()]);
+    const setup = Promise.all([initCurrency(), initTheme()]);
     setup.then(() => {
       SplashScreen.hide();
     });

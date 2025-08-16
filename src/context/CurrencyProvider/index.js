@@ -12,16 +12,13 @@ export const CurrencyContext = createContext({
 });
 
 const CurrencyProvider = (props) => {
-  const [currency, setCurrency] = useState('');
+  const system = getCurrency();
+  const [currency, setCurrency] = useState(system);
 
   const initCurrency = useCallback(async () => {
-    const storeCurrency = await getSaveCurrency();
-    if (storeCurrency) {
-      setCurrency(storeCurrency);
-    } else {
-      const cur = getCurrency();
-      setCurrency(cur);
-      await saveCurrency(cur);
+    const saveCurrency = await getSaveCurrency();
+    if (saveCurrency) {
+      setCurrency(saveCurrency);
     }
   }, []);
 

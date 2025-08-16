@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useState, Fragment, useContext } from 'react';
+import React, { useState, Fragment } from 'react';
 import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import { useTranslation } from 'react-i18next';
 import { Text, View, Linking } from 'react-native';
@@ -12,8 +12,8 @@ import LanguageDialog from '../../components/LanguageDialog';
 import ThemeDialog from '../../components/ThemeDialog';
 import config from '../../config';
 import Colors from '../../constants/Colors';
-import { CurrencyContext } from '../../context/CurrencyProvider';
 import { useAppTheme } from '../../hooks';
+import useAppCurrency from '../../hooks/useAppCurrency';
 
 const ListRightItem = ({ text, textStyle }) => {
   return (
@@ -37,8 +37,8 @@ const Setting = () => {
   const [lngDialog, setLngDialog] = useState(false);
   const [themeDialog, setThemeDialog] = useState(false);
   const insets = useSafeAreaInsets();
-  const currencyCtx = useContext(CurrencyContext);
   const { changeTheme, preference } = useAppTheme();
+  const { changeCurrency, currency } = useAppCurrency();
   const appVersion = VersionCheck.getCurrentVersion();
 
   let tag;
@@ -82,7 +82,7 @@ const Setting = () => {
           )}
           right={() => (
             <ListRightItem
-              text={currencyCtx.currency}
+              text={currency}
               textStyle={{ textTransform: 'uppercase' }}
             />
           )}
@@ -221,12 +221,12 @@ const Setting = () => {
         }}
         enable={false}
         darkMode={false}
-        currencyCode={currencyCtx.currency}
+        currencyCode={currency}
         showFlag={true}
         showCurrencyName={true}
         showCurrencyCode={true}
         onSelectCurrency={(data) => {
-          currencyCtx.changeCurrency(data.code);
+          changeCurrency(data.code);
         }}
         showNativeSymbol={false}
         showSymbol={false}
