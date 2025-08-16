@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { createContext, useCallback, useState, useEffect } from 'react';
 import { Appearance, useColorScheme } from 'react-native';
 import { getStoreThemeMode, saveThemeMode } from '../../utils/theme';

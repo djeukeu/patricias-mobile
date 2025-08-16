@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   appVersion: {
     color: Colors.black,
     fontFamily: Fonts.semiBold,
-    fontSize: 16,
+    fontSize: 14,
   },
   currencyContainer: {
     backgroundColor: Colors.white,

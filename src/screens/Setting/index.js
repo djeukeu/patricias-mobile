@@ -1,3 +1,5 @@
+/* eslint-disable import/default */
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable react-native/no-inline-styles */
 import React, { useState, Fragment, useContext } from 'react';
 import { MaterialIcons } from '@react-native-vector-icons/material-icons';
@@ -6,6 +8,7 @@ import { Text, View, Linking } from 'react-native';
 import CurrencyPicker from 'react-native-currency-picker';
 import { List, MD2Colors } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import VersionCheck from 'react-native-version-check';
 import styles from './styles';
 import LanguageDialog from '../../components/LanguageDialog';
 import ThemeDialog from '../../components/ThemeDialog';
@@ -38,6 +41,7 @@ const Setting = () => {
   const insets = useSafeAreaInsets();
   const currencyCtx = useContext(CurrencyContext);
   const themeCtx = useContext(ThemeContext);
+  const appVersion = VersionCheck.getCurrentVersion();
 
   let tag;
   if (config.env === 'development') {
@@ -196,7 +200,7 @@ const Setting = () => {
         />
         <View style={styles.versionWrapper}>
           <Text style={styles.appVersion}>
-            Version: {config.app_version}
+            Version: {appVersion}
             {tag}
           </Text>
         </View>

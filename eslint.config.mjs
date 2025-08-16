@@ -48,6 +48,7 @@ export default defineConfig([
       'import/namespace': 'off',
       'import/no-unresolved': 'off',
       'import/named': 'off',
+      'import/no-named-as-default-member': 'off',
       'import/order': [
         'error',
         {
