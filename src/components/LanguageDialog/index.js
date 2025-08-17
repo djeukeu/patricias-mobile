@@ -7,17 +7,24 @@ import {
   RadioButton,
   MD2Colors,
 } from 'react-native-paper';
-import styles from './styles';
+import style from './styles';
 import Colors from '../../constants/Colors';
+import { useAppTheme } from '../../hooks';
 
 const LanguageDialog = ({ visible, hideDialog, changeLanguage, initValue }) => {
   const { t } = useTranslation();
+  const { theme, isDark } = useAppTheme();
   const [language, setLanguage] = useState(initValue);
+  const styles = style(theme);
 
   return (
     <Portal>
       <Dialog visible={visible} onDismiss={hideDialog} style={styles.container}>
-        <Dialog.Icon icon="translate" size={36} color={Colors.primary} />
+        <Dialog.Icon
+          icon="translate"
+          size={36}
+          color={isDark ? MD2Colors.white : Colors.primary}
+        />
         <Dialog.Title style={styles.title}>
           {t('setting.chooseLanguange')}
         </Dialog.Title>

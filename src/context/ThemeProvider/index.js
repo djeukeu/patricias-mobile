@@ -11,6 +11,7 @@ import { getSaveThemePreference, saveThemePreference } from '../../utils/theme';
 export const ThemeContext = createContext({
   preference: '',
   theme: '',
+  isDark: null,
   initTheme: () => {},
   changeTheme: () => {},
 });
@@ -48,11 +49,14 @@ const ThemeProvider = (props) => {
     [preference, systemScheme]
   );
 
+  const isDark = useMemo(() => theme === 'dark', [theme]);
+
   return (
     <ThemeContext.Provider
       value={{
         theme,
         preference,
+        isDark,
         initTheme,
         changeTheme,
       }}>

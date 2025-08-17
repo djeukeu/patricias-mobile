@@ -10,7 +10,6 @@ const TabBar = ({
   shifting = true,
   activeColor,
   inactiveColor,
-  theme,
   activeIndicatorStyle,
   barStyle,
 }) => {
@@ -21,7 +20,6 @@ const TabBar = ({
       shifting={shifting}
       activeColor={activeColor}
       inactiveColor={inactiveColor}
-      theme={theme}
       style={barStyle}
       activeIndicatorStyle={activeIndicatorStyle}
       onTabPress={({ route, preventDefault }) => {

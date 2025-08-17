@@ -7,7 +7,7 @@ import CurrencyPicker from 'react-native-currency-picker';
 import { List, MD2Colors } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import VersionCheck from 'react-native-version-check';
-import styles from './styles';
+import style from './styles';
 import LanguageDialog from '../../components/LanguageDialog';
 import ThemeDialog from '../../components/ThemeDialog';
 import config from '../../config';
@@ -16,6 +16,9 @@ import { useAppTheme } from '../../hooks';
 import useAppCurrency from '../../hooks/useAppCurrency';
 
 const ListRightItem = ({ text, textStyle }) => {
+  const { theme } = useAppTheme();
+  const styles = style(theme);
+
   return (
     <View style={styles.rightContainer}>
       {text && (
@@ -37,9 +40,11 @@ const Setting = () => {
   const [lngDialog, setLngDialog] = useState(false);
   const [themeDialog, setThemeDialog] = useState(false);
   const insets = useSafeAreaInsets();
-  const { changeTheme, preference } = useAppTheme();
+  const { changeTheme, preference, theme, isDark } = useAppTheme();
   const { changeCurrency, currency } = useAppCurrency();
   const appVersion = VersionCheck.getCurrentVersion();
+  const iconColor = isDark ? MD2Colors.white : Colors.primary;
+  const styles = style(theme);
 
   let tag;
   if (config.env === 'development') {
@@ -78,7 +83,7 @@ const Setting = () => {
           titleStyle={styles.itemtxt}
           title={t('setting.currency')}
           left={(props) => (
-            <List.Icon {...props} icon="currency-usd" color={Colors.primary} />
+            <List.Icon {...props} icon="currency-usd" color={iconColor} />
           )}
           right={() => (
             <ListRightItem
@@ -95,7 +100,7 @@ const Setting = () => {
           titleStyle={styles.itemtxt}
           title={t('setting.language')}
           left={(props) => (
-            <List.Icon {...props} icon="translate" color={Colors.primary} />
+            <List.Icon {...props} icon="translate" color={iconColor} />
           )}
           right={() => (
             <ListRightItem
@@ -112,11 +117,7 @@ const Setting = () => {
           titleStyle={styles.itemtxt}
           title={t('setting.appearance')}
           left={(props) => (
-            <List.Icon
-              {...props}
-              icon="theme-light-dark"
-              color={Colors.primary}
-            />
+            <List.Icon {...props} icon="theme-light-dark" color={iconColor} />
           )}
           right={() => (
             <ListRightItem
@@ -133,7 +134,7 @@ const Setting = () => {
           titleStyle={styles.itemtxt}
           title={t('setting.newsletter')}
           left={(props) => (
-            <List.Icon {...props} icon="newspaper" color={Colors.primary} />
+            <List.Icon {...props} icon="newspaper" color={iconColor} />
           )}
           right={ListRightItem}
           onPress={() => {
@@ -148,7 +149,7 @@ const Setting = () => {
             <List.Icon
               {...props}
               icon="help-circle-outline"
-              color={Colors.primary}
+              color={iconColor}
             />
           )}
           right={ListRightItem}
@@ -161,7 +162,7 @@ const Setting = () => {
           titleStyle={styles.itemtxt}
           title={t('setting.privacy')}
           left={(props) => (
-            <List.Icon {...props} icon="shield-lock" color={Colors.primary} />
+            <List.Icon {...props} icon="shield-lock" color={iconColor} />
           )}
           right={ListRightItem}
           onPress={() => {
@@ -173,7 +174,7 @@ const Setting = () => {
           titleStyle={styles.itemtxt}
           title={t('setting.terms')}
           left={(props) => (
-            <List.Icon {...props} icon="file-document" color={Colors.primary} />
+            <List.Icon {...props} icon="file-document" color={iconColor} />
           )}
           right={ListRightItem}
           onPress={() => {
@@ -188,7 +189,7 @@ const Setting = () => {
             <List.Icon
               {...props}
               icon="comment-question-outline"
-              color={Colors.primary}
+              color={iconColor}
             />
           )}
           right={ListRightItem}
@@ -220,7 +221,7 @@ const Setting = () => {
           currencyPickerRef = ref;
         }}
         enable={false}
-        darkMode={false}
+        darkMode={theme === 'dark'}
         currencyCode={currency}
         showFlag={true}
         showCurrencyName={true}

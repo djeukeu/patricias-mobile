@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-unused-styles */
 import React from 'react';
 import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -10,12 +11,27 @@ import SettingNavigator from './SettingNavigator';
 import WishlistNavigator from './WishlistNavigator';
 import TabBar from '../../components/TabBar';
 import Colors from '../../constants/Colors';
-import Fonts from '../../constants/Fonts';
+import { useAppTheme } from '../../hooks';
 
 const Tab = createBottomTabNavigator();
 
+const TabIcon = ({ p, theme, name }) => (
+  <MaterialDesignIcons
+    name={p.focused ? name : `${name}-outline`}
+    size={24}
+    color={
+      p.focused
+        ? theme == 'dark'
+          ? MD2Colors.black
+          : MD2Colors.white
+        : p.color
+    }
+  />
+);
+
 const TabNavigator = () => {
   const { t } = useTranslation();
+  const { theme, isDark } = useAppTheme();
 
   return (
     <Tab.Navigator
@@ -23,25 +39,22 @@ const TabNavigator = () => {
       tabBar={(props) => (
         <TabBar
           {...props}
-          activeColor={Colors.primary}
-          inactiveColor={Colors.black}
-          theme={{ fonts: Fonts }}
-          activeIndicatorStyle={{ backgroundColor: Colors.primary }}
-          barStyle={styles.barStyle}
+          activeColor={isDark ? MD2Colors.white : Colors.primary}
+          inactiveColor={isDark ? MD2Colors.white : MD2Colors.black}
+          activeIndicatorStyle={{
+            backgroundColor: isDark ? MD2Colors.white : Colors.primary,
+          }}
+          barStyle={styles(theme).barStyle}
         />
       )}
-      screenOptions={{ headerShown: false }}>
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Tab.Screen
         name="Home"
         component={HomeNavigator}
         options={{
-          tabBarIcon: (p) => (
-            <MaterialDesignIcons
-              name={p.focused ? 'home' : 'home-outline'}
-              size={24}
-              color={p.focused ? Colors.white : p.color}
-            />
-          ),
+          tabBarIcon: (p) => <TabIcon p={p} theme={theme} name="home" />,
           tabBarLabel: t('tabs.home'),
         }}
       />
@@ -49,13 +62,7 @@ const TabNavigator = () => {
         name="Wishlist"
         component={WishlistNavigator}
         options={{
-          tabBarIcon: (p) => (
-            <MaterialDesignIcons
-              name={p.focused ? 'shopping' : 'shopping-outline'}
-              size={24}
-              color={p.focused ? Colors.white : p.color}
-            />
-          ),
+          tabBarIcon: (p) => <TabIcon p={p} theme={theme} name="shopping" />,
           tabBarLabel: t('tabs.wishlist'),
         }}
       />
@@ -63,13 +70,7 @@ const TabNavigator = () => {
         name="Cart"
         component={CartNavigator}
         options={{
-          tabBarIcon: (p) => (
-            <MaterialDesignIcons
-              name={p.focused ? 'cart' : 'cart-outline'}
-              size={24}
-              color={p.focused ? Colors.white : p.color}
-            />
-          ),
+          tabBarIcon: (p) => <TabIcon p={p} theme={theme} name="cart" />,
           tabBarLabel: t('tabs.cart'),
         }}
       />
@@ -77,13 +78,7 @@ const TabNavigator = () => {
         name="Setting"
         component={SettingNavigator}
         options={{
-          tabBarIcon: (p) => (
-            <MaterialDesignIcons
-              name={p.focused ? 'cog' : 'cog-outline'}
-              size={24}
-              color={p.focused ? Colors.white : p.color}
-            />
-          ),
+          tabBarIcon: (p) => <TabIcon p={p} theme={theme} name="cog" />,
           tabBarLabel: t('tabs.setting'),
         }}
       />
@@ -91,16 +86,18 @@ const TabNavigator = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  barStyle: {
-    backgroundColor: Colors.white,
-    borderTopColor: Platform.OS === 'android' && MD2Colors.grey500,
-    borderTopWidth: Platform.OS === 'android' && 0.5,
-    shadowColor: Colors.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3,
-  },
-});
+const styles = (theme) => {
+  return StyleSheet.create({
+    barStyle: {
+      backgroundColor: theme == 'dark' ? MD2Colors.black : MD2Colors.white,
+      borderTopColor: Platform.OS === 'android' && MD2Colors.grey500,
+      borderTopWidth: Platform.OS === 'android' && 0.5,
+      shadowColor: theme == 'light' && MD2Colors.black,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.25,
+      shadowRadius: 3,
+    },
+  });
+};
 
 export default TabNavigator;

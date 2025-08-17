@@ -6,15 +6,17 @@ import {
 } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { adaptNavigationTheme } from 'react-native-paper';
+import { PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
 import AppNavigator from './AppNavigator';
 import { useAppTheme } from '../hooks';
 import useAppCurrency from '../hooks/useAppCurrency';
+import { customDarkTheme, customLightTheme } from '../theme';
 import { storeLng } from '../utils/language';
 
 const Navigation = () => {
   const { i18n } = useTranslation();
-  const { initTheme, theme } = useAppTheme();
+  const { initTheme, isDark } = useAppTheme();
   const { initCurrency } = useAppCurrency();
 
   const { LightTheme, DarkTheme } = adaptNavigationTheme({
@@ -35,9 +37,11 @@ const Navigation = () => {
   }, []);
 
   return (
-    <NavigationContainer theme={theme === 'dark' ? DarkTheme : LightTheme}>
-      <AppNavigator />
-    </NavigationContainer>
+    <PaperProvider theme={isDark ? customDarkTheme : customLightTheme}>
+      <NavigationContainer theme={isDark ? DarkTheme : LightTheme}>
+        <AppNavigator />
+      </NavigationContainer>
+    </PaperProvider>
   );
 };
 
