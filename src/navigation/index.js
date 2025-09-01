@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
+
 import { useTranslation } from 'react-i18next';
 import SplashScreen from 'react-native-splash-screen';
+
 import AppNavigator from './AppNavigator';
 import { storeLng } from '../utils/language';
 

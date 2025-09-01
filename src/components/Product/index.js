@@ -1,21 +1,19 @@
+import React from 'react';
+
 import {
   View,
-  Text,
   TouchableOpacity,
   Image,
   useWindowDimensions,
 } from 'react-native';
-import React from 'react';
+import DropShadow from 'react-native-drop-shadow';
+
 import style from './styles';
 import { useAppTheme } from '../../hooks';
-import { useNavigation } from '@react-navigation/native';
-import DropShadow from 'react-native-drop-shadow';
-import CurrencyFormater from '../CurrencyFormater';
 const Product = () => {
   const { theme } = useAppTheme();
   const { width } = useWindowDimensions();
   //   const [like, setLike] = useState(isWish);
-  const navigation = useNavigation();
   const styles = style(theme);
 
   return (

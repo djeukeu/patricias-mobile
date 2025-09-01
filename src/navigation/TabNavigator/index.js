@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTranslation } from 'react-i18next';
 import { MD2Colors } from 'react-native-paper';
+
 import CartNavigator from './CartNavigator';
 import HomeNavigator from './HomeNavigator';
 import SettingNavigator from './SettingNavigator';

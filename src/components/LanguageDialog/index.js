@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
 import {
   Button,
@@ -7,6 +8,7 @@ import {
   RadioButton,
   MD2Colors,
 } from 'react-native-paper';
+
 import Colors from '../../constants/Colors';
 import { useAppTheme } from '../../hooks';
 

@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react';
+
 import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import { useTranslation } from 'react-i18next';
 import { View, Linking } from 'react-native';
@@ -6,6 +7,7 @@ import CurrencyPicker from 'react-native-currency-picker';
 import { List, MD2Colors, Text } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import VersionCheck from 'react-native-version-check';
+
 import styles from './styles';
 import LanguageDialog from '../../components/LanguageDialog';
 import ThemeDialog from '../../components/ThemeDialog';

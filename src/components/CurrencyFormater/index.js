@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
 import NumberFormat from 'react-number-format';
+
 import { useAppCurrency } from '../../hooks';
 
 const CurrencyFormater = ({ amount, renderText, freeTxt = true }) => {

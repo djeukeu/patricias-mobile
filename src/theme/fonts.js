@@ -1,4 +1,5 @@
 import { configureFonts } from 'react-native-paper';
+
 import Fonts from '../constants/Fonts';
 
 export const fonts = configureFonts({

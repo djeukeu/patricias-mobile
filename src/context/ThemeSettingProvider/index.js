@@ -5,7 +5,9 @@ import React, {
   useEffect,
   useMemo,
 } from 'react';
+
 import { Appearance, useColorScheme } from 'react-native';
+
 import { restorePreference, storePreference } from '../../utils/theme';
 
 export const ThemeSettingContext = createContext({

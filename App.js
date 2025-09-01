@@ -1,7 +1,9 @@
 import React, { Suspense } from 'react';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { I18nextProvider } from 'react-i18next';
 import { PaperProvider } from 'react-native-paper';
+
 import CurrencyProvider from './src/context/CurrencyProvider';
 import ThemeSettingProvider, {
   ThemeSettingConsumer,

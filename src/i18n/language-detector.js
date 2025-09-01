@@ -1,4 +1,5 @@
 import * as RNLocalize from 'react-native-localize';
+
 import { getLng } from '../utils/language';
 
 export const detectUserLanguage = async (callback) => {

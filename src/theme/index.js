@@ -7,6 +7,7 @@ import {
   MD3DarkTheme,
   adaptNavigationTheme,
 } from 'react-native-paper';
+
 import { darkColors, lightColors } from './colors';
 import { fonts } from './fonts';
 

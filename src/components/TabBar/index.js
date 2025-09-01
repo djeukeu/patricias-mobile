@@ -1,8 +1,10 @@
 /* eslint-disable react-native/no-unused-styles */
 import React from 'react';
+
 import { CommonActions } from '@react-navigation/native';
 import { StyleSheet, Platform } from 'react-native';
 import { BottomNavigation, MD2Colors } from 'react-native-paper';
+
 import Colors from '../../constants/Colors';
 import { useAppTheme } from '../../hooks';
 
