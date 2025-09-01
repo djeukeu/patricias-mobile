@@ -12,8 +12,7 @@ import LanguageDialog from '../../components/LanguageDialog';
 import ThemeDialog from '../../components/ThemeDialog';
 import config from '../../config';
 import Colors from '../../constants/Colors';
-import { useAppTheme } from '../../hooks';
-import useAppCurrency from '../../hooks/useAppCurrency';
+import { useAppCurrency, useAppTheme } from '../../hooks';
 
 const ListRightItem = ({ text, textStyle }) => {
   const { theme } = useAppTheme();

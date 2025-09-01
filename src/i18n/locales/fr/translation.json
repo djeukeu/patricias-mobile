@@ -5,5 +5,29 @@
     "cart": "Panier",
     "setting": "Paramètres"
   },
-  "back": "Retour"
+  "back": "Retour",
+    "setting": {
+    "txt": "Paramètres",
+    "currency": "Devise",
+    "language": "Langue",
+    "appearance": "Apparence",
+    "newsletter": "Blog",
+    "help": "Aide",
+    "privacy": "Politique de confidentialité",
+    "terms": "Termes et conditions",
+    "faqs": "FAQ",
+    "light": "Clair",
+    "dark": "Sombre",
+    "chooseLanguange": "Choisissez une langue",
+    "chooseTheme": "Choisissez un thème",
+    "cancel": "Annuler",
+   "en": "Anglais",
+    "fr": "Français",
+    "select": "Changer de devise",
+    "searchCurrency": "Rechercher la devise",
+    "system": "Système"
+  },
+  "wislist": {
+    "txt": "Produits enregistrés"
+  }
 }

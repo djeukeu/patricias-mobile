@@ -5849,6 +5849,11 @@ react-native-currency-picker@^1.0.5:
     react-native-auto-height-image "^3.2.3"
     react-native-status-bar-height "^2.5.0"
 
+react-native-drop-shadow@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-drop-shadow/-/react-native-drop-shadow-1.0.3.tgz#a9c06b1a41c3a3ca17e01c4e743eb0360e45bb2f"
+  integrity sha512-R5AVDT2/8uRrNbcnkwvmCsW2qzVdvPOSx/81B8fHsTQdcYazsHAPtXW3IlBZnNf658NupfBr+o2ABWy5mFCfoQ==
+
 react-native-is-edge-to-edge@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-is-edge-to-edge/-/react-native-is-edge-to-edge-1.2.1.tgz#64e10851abd9d176cbf2b40562f751622bde3358"
@@ -5940,6 +5945,11 @@ react-native@0.80.2:
     whatwg-fetch "^3.0.0"
     ws "^6.2.3"
     yargs "^17.6.2"
+
+react-number-format@^5.4.4:
+  version "5.4.4"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-5.4.4.tgz#d31f0e260609431500c8d3f81bbd3ae1fb7cacad"
+  integrity sha512-wOmoNZoOpvMminhifQYiYSTCLUDOiUbBunrMrMjA+dV52sY+vck1S4UhR6PkgnoCquvvMSeJjErXZ4qSaWCliA==
 
 react-refresh@^0.14.0:
   version "0.14.2"

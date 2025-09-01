@@ -9,8 +9,7 @@ import { adaptNavigationTheme } from 'react-native-paper';
 import { PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
 import AppNavigator from './AppNavigator';
-import { useAppTheme } from '../hooks';
-import useAppCurrency from '../hooks/useAppCurrency';
+import { useAppCurrency, useAppTheme } from '../hooks';
 import { customDarkTheme, customLightTheme } from '../theme';
 import { storeLng } from '../utils/language';
 

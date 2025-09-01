@@ -26,7 +26,7 @@ const ThemeDialog = ({ visible, hideDialog, changeTheme, initValue }) => {
           color={isDark ? MD2Colors.white : Colors.primary}
         />
         <Dialog.Title style={styles.title}>
-          {t('setting.chooseLanguange')}
+          {t('setting.chooseTheme')}
         </Dialog.Title>
         <Dialog.Content>
           <RadioButton.Group value={mode}>
