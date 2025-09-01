@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { ThemeContext } from '../context/ThemeProvider';
+import { ThemeSettingContext } from '../context/ThemeSettingProvider';
 
 const useAppTheme = () => {
-  const themeCtx = useContext(ThemeContext);
+  const themeCtx = useContext(ThemeSettingContext);
   return themeCtx;
 };
 

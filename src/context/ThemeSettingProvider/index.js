@@ -6,35 +6,37 @@ import React, {
   useMemo,
 } from 'react';
 import { Appearance, useColorScheme } from 'react-native';
-import { getSaveThemePreference, saveThemePreference } from '../../utils/theme';
+import { restorePreference, storePreference } from '../../utils/theme';
 
-export const ThemeContext = createContext({
+export const ThemeSettingContext = createContext({
   preference: '',
   theme: '',
   isDark: null,
-  initTheme: () => {},
-  changeTheme: () => {},
+  changePreference: () => {},
 });
 
-const ThemeProvider = (props) => {
+const ThemeSettingProvider = (props) => {
   const system = useColorScheme();
   const [preference, setPreference] = useState('system');
   const [systemScheme, setSystemScheme] = useState(system);
 
-  const initTheme = useCallback(async () => {
-    const themeMode = await getSaveThemePreference();
-    if (
-      themeMode === 'light' ||
-      themeMode === 'dark' ||
-      themeMode === 'system'
-    ) {
-      setPreference(themeMode);
-    }
+  useEffect(() => {
+    const init = async () => {
+      const restored = await restorePreference();
+      if (
+        restored === 'light' ||
+        restored === 'dark' ||
+        restored === 'system'
+      ) {
+        setPreference(restored);
+      }
+    };
+    init();
   }, []);
 
-  const changeTheme = useCallback(async (p) => {
+  const changePreference = useCallback(async (p) => {
     setPreference(p);
-    await saveThemePreference(p);
+    await storePreference(p);
   }, []);
 
   useEffect(() => {
@@ -52,17 +54,18 @@ const ThemeProvider = (props) => {
   const isDark = useMemo(() => theme === 'dark', [theme]);
 
   return (
-    <ThemeContext.Provider
+    <ThemeSettingContext.Provider
       value={{
         theme,
         preference,
         isDark,
-        initTheme,
-        changeTheme,
+        changePreference,
       }}>
       {props.children}
-    </ThemeContext.Provider>
+    </ThemeSettingContext.Provider>
   );
 };
 
-export default ThemeProvider;
+export const ThemeSettingConsumer = ThemeSettingContext.Consumer;
+
+export default ThemeSettingProvider;
