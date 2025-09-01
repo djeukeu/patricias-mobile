@@ -11,15 +11,11 @@ import Wishlist from '../../../screens/Wishlist';
 const Stack = createNativeStackNavigator();
 
 const WishlistNavigator = () => {
-  const { theme, isDark } = useAppTheme();
+  const { isDark } = useAppTheme();
   const { t } = useTranslation();
 
   return (
-    <Stack.Navigator
-      initialRouteName="WishlistScreen"
-      screenOptions={{
-        contentStyle: { backgroundColor: Colors.background[theme] },
-      }}>
+    <Stack.Navigator initialRouteName="WishlistScreen">
       <Stack.Screen
         name="WishlistScreen"
         component={Wishlist}

@@ -30,7 +30,7 @@ export default defineConfig([
     rules: {
       'react-native/no-unused-styles': 2,
       'react-native/split-platform-components': 2,
-      'react-native/no-inline-styles': 2,
+      'react-native/no-inline-styles': 'off',
       'react-native/sort-styles': [
         'error',
         'asc',

@@ -1,18 +1,14 @@
 import React, { Suspense } from 'react';
-import {
-  NavigationContainer,
-  DarkTheme as NavigationDarkTheme,
-  DefaultTheme as NavigationDefaultTheme,
-} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { I18nextProvider } from 'react-i18next';
-import { PaperProvider, adaptNavigationTheme } from 'react-native-paper';
+import { PaperProvider } from 'react-native-paper';
 import CurrencyProvider from './src/context/CurrencyProvider';
 import ThemeSettingProvider, {
   ThemeSettingConsumer,
 } from './src/context/ThemeSettingProvider';
 import i18nInstance from './src/i18n';
 import Navigation from './src/navigation';
-import { customDarkTheme, customLightTheme } from './src/theme';
+import { darkTheme, lightTheme } from './src/theme';
 
 const App = () => {
   return (
@@ -22,15 +18,10 @@ const App = () => {
           <ThemeSettingProvider>
             <ThemeSettingConsumer>
               {({ isDark }) => {
-                const { LightTheme, DarkTheme } = adaptNavigationTheme({
-                  reactNavigationLight: NavigationDefaultTheme,
-                  reactNavigationDark: NavigationDarkTheme,
-                });
                 return (
-                  <PaperProvider
-                    theme={isDark ? customDarkTheme : customLightTheme}>
+                  <PaperProvider theme={isDark ? darkTheme : lightTheme}>
                     <NavigationContainer
-                      theme={isDark ? DarkTheme : LightTheme}>
+                      theme={isDark ? darkTheme : lightTheme}>
                       <Navigation />
                     </NavigationContainer>
                   </PaperProvider>
