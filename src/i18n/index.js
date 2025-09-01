@@ -1,7 +1,7 @@
-/* eslint-disable import/no-named-as-default-member */
 import i18next from 'i18next';
 import AsyncStoragePlugin from 'i18next-react-native-async-storage';
 import { initReactI18next } from 'react-i18next';
+
 import * as config from './config';
 import { english, french } from './locales';
 import appConfig from '../config';

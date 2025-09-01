@@ -1,40 +1,39 @@
-import React, { createContext, useCallback, useState } from 'react';
+import React, { createContext, useCallback, useEffect, useState } from 'react';
+
 import {
   getCurrency,
-  getStoreCurrency,
-  saveCurrency,
+  restoreCurrency,
+  storeCurrency,
 } from '../../utils/currency';
 
 export const CurrencyContext = createContext({
   currency: '',
-  initCurrency: () => {},
   changeCurrency: () => {},
 });
 
 const CurrencyProvider = (props) => {
-  const [currency, setCurrency] = useState('');
+  const system = getCurrency();
+  const [currency, setCurrency] = useState(system);
 
-  const initCurrency = useCallback(async () => {
-    const storeCurrency = await getStoreCurrency();
-    if (storeCurrency) {
-      setCurrency(storeCurrency);
-    } else {
-      const cur = getCurrency();
-      setCurrency(cur);
-      await saveCurrency(cur);
-    }
-  }, []);
+  useEffect(() => {
+    const init = async () => {
+      const restore = await restoreCurrency();
+      if (restore) {
+        setCurrency(restore);
+      }
+    };
+    init();
+  });
 
   const changeCurrency = useCallback(async (cur) => {
     setCurrency(cur);
-    await saveCurrency(cur);
+    await storeCurrency(cur);
   }, []);
 
   return (
     <CurrencyContext.Provider
       value={{
         currency,
-        initCurrency,
         changeCurrency,
       }}>
       {props.children}

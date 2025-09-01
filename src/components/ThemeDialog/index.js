@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
 import {
   Button,
@@ -7,20 +8,27 @@ import {
   RadioButton,
   MD2Colors,
 } from 'react-native-paper';
-import styles from './styles';
-import Colors from '../../constants/Colors';
 
-const ThemeDialog = ({ visible, hideDialog, changeTheme, initValue }) => {
+import Colors from '../../constants/Colors';
+import { useAppTheme } from '../../hooks';
+
+const ThemeDialog = ({ visible, hideDialog, changeTheme }) => {
+  const { theme, isDark, preference } = useAppTheme();
   const { t } = useTranslation();
-  const [mode, setMode] = useState(initValue);
+  const [mode, setMode] = useState(preference);
 
   return (
     <Portal>
-      <Dialog visible={visible} onDismiss={hideDialog} style={styles.container}>
-        <Dialog.Icon icon="theme-light-dark" size={36} color={Colors.primary} />
-        <Dialog.Title style={styles.title}>
-          {t('setting.chooseLanguange')}
-        </Dialog.Title>
+      <Dialog
+        visible={visible}
+        onDismiss={hideDialog}
+        style={{ backgroundColor: Colors.background[theme] }}>
+        <Dialog.Icon
+          icon="theme-light-dark"
+          size={36}
+          color={isDark ? MD2Colors.white : Colors.primary}
+        />
+        <Dialog.Title>{t('setting.chooseTheme')}</Dialog.Title>
         <Dialog.Content>
           <RadioButton.Group value={mode}>
             <RadioButton.Item
@@ -30,8 +38,6 @@ const ThemeDialog = ({ visible, hideDialog, changeTheme, initValue }) => {
                 setMode('system');
               }}
               uncheckedColor={MD2Colors.grey500}
-              rippleColor={Colors.transparent}
-              labelStyle={styles.radioTxt}
             />
             <RadioButton.Item
               label={t('setting.light')}
@@ -40,8 +46,6 @@ const ThemeDialog = ({ visible, hideDialog, changeTheme, initValue }) => {
                 setMode('light');
               }}
               uncheckedColor={MD2Colors.grey500}
-              rippleColor={Colors.transparent}
-              labelStyle={styles.radioTxt}
             />
             <RadioButton.Item
               label={t('setting.dark')}
@@ -50,20 +54,20 @@ const ThemeDialog = ({ visible, hideDialog, changeTheme, initValue }) => {
                 setMode('dark');
               }}
               uncheckedColor={MD2Colors.grey500}
-              rippleColor={Colors.transparent}
-              labelStyle={styles.radioTxt}
             />
           </RadioButton.Group>
         </Dialog.Content>
         <Dialog.Actions>
-          <Button onPress={hideDialog} labelStyle={styles.dialogBtn}>
+          <Button
+            onPress={hideDialog}
+            labelStyle={{ color: isDark ? MD2Colors.white : Colors.primary }}>
             {t('setting.cancel')}
           </Button>
           <Button
             onPress={() => {
               changeTheme(mode);
             }}
-            labelStyle={styles.dialogBtn}>
+            labelStyle={{ color: isDark ? MD2Colors.white : Colors.primary }}>
             Ok
           </Button>
         </Dialog.Actions>

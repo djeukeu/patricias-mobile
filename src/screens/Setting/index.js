@@ -1,24 +1,26 @@
-/* eslint-disable react-native/no-inline-styles */
-import React, { useState, Fragment, useContext } from 'react';
+import React, { useState, Fragment } from 'react';
+
 import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import { useTranslation } from 'react-i18next';
-import { Text, View, Linking } from 'react-native';
+import { View, Linking } from 'react-native';
 import CurrencyPicker from 'react-native-currency-picker';
-import { List, MD2Colors } from 'react-native-paper';
+import { List, MD2Colors, Text } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import VersionCheck from 'react-native-version-check';
+
 import styles from './styles';
 import LanguageDialog from '../../components/LanguageDialog';
 import ThemeDialog from '../../components/ThemeDialog';
 import config from '../../config';
 import Colors from '../../constants/Colors';
-import { CurrencyContext } from '../../context/CurrencyProvider';
-import { ThemeContext } from '../../context/ThemeProvider';
+import Fonts from '../../constants/Fonts';
+import { useAppCurrency, useAppTheme } from '../../hooks';
 
-const ListRightItem = ({ text, textStyle }) => {
+const ListRightItem = ({ text, textTransform }) => {
   return (
     <View style={styles.rightContainer}>
       {text && (
-        <Text style={{ ...styles.rightContainerTxt, ...textStyle }}>
+        <Text variant="bodyMedium" style={{ textTransform }}>
           {text}
         </Text>
       )}
@@ -36,8 +38,10 @@ const Setting = () => {
   const [lngDialog, setLngDialog] = useState(false);
   const [themeDialog, setThemeDialog] = useState(false);
   const insets = useSafeAreaInsets();
-  const currencyCtx = useContext(CurrencyContext);
-  const themeCtx = useContext(ThemeContext);
+  const { changePreference, preference, theme, isDark } = useAppTheme();
+  const { changeCurrency, currency } = useAppCurrency();
+  const appVersion = VersionCheck.getCurrentVersion();
+  const iconColor = isDark ? MD2Colors.white : Colors.primary;
 
   let tag;
   if (config.env === 'development') {
@@ -65,40 +69,33 @@ const Setting = () => {
 
   const changeThemeMode = (mode) => {
     setThemeDialog(false);
-    themeCtx.changeTheme(mode);
+    changePreference(mode);
   };
 
   return (
     <>
       <View style={styles.screen}>
         <List.Item
-          rippleColor={Colors.transparent}
-          titleStyle={styles.itemtxt}
           title={t('setting.currency')}
           left={(props) => (
-            <List.Icon {...props} icon="currency-usd" color={Colors.primary} />
+            <List.Icon {...props} icon="currency-usd" color={iconColor} />
           )}
           right={() => (
-            <ListRightItem
-              text={currencyCtx.currency}
-              textStyle={{ textTransform: 'uppercase' }}
-            />
+            <ListRightItem text={currency} textTransform="uppercase" />
           )}
           onPress={() => {
             currencyPickerRef.open();
           }}
         />
         <List.Item
-          rippleColor={Colors.transparent}
-          titleStyle={styles.itemtxt}
           title={t('setting.language')}
           left={(props) => (
-            <List.Icon {...props} icon="translate" color={Colors.primary} />
+            <List.Icon {...props} icon="translate" color={iconColor} />
           )}
           right={() => (
             <ListRightItem
               text={t(`setting.${i18n.languages[0]}`)}
-              textStyle={{ textTransform: 'capitalize' }}
+              textTransform="capitalize"
             />
           )}
           onPress={() => {
@@ -106,32 +103,21 @@ const Setting = () => {
           }}
         />
         <List.Item
-          rippleColor={Colors.transparent}
-          titleStyle={styles.itemtxt}
           title={t('setting.appearance')}
           left={(props) => (
-            <List.Icon
-              {...props}
-              icon="theme-light-dark"
-              color={Colors.primary}
-            />
+            <List.Icon {...props} icon="theme-light-dark" color={iconColor} />
           )}
           right={() => (
-            <ListRightItem
-              text={themeCtx.mode}
-              textStyle={{ textTransform: 'capitalize' }}
-            />
+            <ListRightItem text={preference} textTransform="capitalize" />
           )}
           onPress={() => {
             setThemeDialog(true);
           }}
         />
         <List.Item
-          rippleColor={Colors.transparent}
-          titleStyle={styles.itemtxt}
           title={t('setting.newsletter')}
           left={(props) => (
-            <List.Icon {...props} icon="newspaper" color={Colors.primary} />
+            <List.Icon {...props} icon="newspaper" color={iconColor} />
           )}
           right={ListRightItem}
           onPress={() => {
@@ -139,14 +125,12 @@ const Setting = () => {
           }}
         />
         <List.Item
-          rippleColor={Colors.transparent}
-          titleStyle={styles.itemtxt}
           title={t('setting.help')}
           left={(props) => (
             <List.Icon
               {...props}
               icon="help-circle-outline"
-              color={Colors.primary}
+              color={iconColor}
             />
           )}
           right={ListRightItem}
@@ -155,11 +139,9 @@ const Setting = () => {
           }}
         />
         <List.Item
-          rippleColor={Colors.transparent}
-          titleStyle={styles.itemtxt}
           title={t('setting.privacy')}
           left={(props) => (
-            <List.Icon {...props} icon="shield-lock" color={Colors.primary} />
+            <List.Icon {...props} icon="shield-lock" color={iconColor} />
           )}
           right={ListRightItem}
           onPress={() => {
@@ -167,11 +149,9 @@ const Setting = () => {
           }}
         />
         <List.Item
-          rippleColor={Colors.transparent}
-          titleStyle={styles.itemtxt}
           title={t('setting.terms')}
           left={(props) => (
-            <List.Icon {...props} icon="file-document" color={Colors.primary} />
+            <List.Icon {...props} icon="file-document" color={iconColor} />
           )}
           right={ListRightItem}
           onPress={() => {
@@ -179,14 +159,12 @@ const Setting = () => {
           }}
         />
         <List.Item
-          rippleColor={Colors.transparent}
-          titleStyle={styles.itemtxt}
           title={t('setting.faqs')}
           left={(props) => (
             <List.Icon
               {...props}
               icon="comment-question-outline"
-              color={Colors.primary}
+              color={iconColor}
             />
           )}
           right={ListRightItem}
@@ -195,8 +173,8 @@ const Setting = () => {
           }}
         />
         <View style={styles.versionWrapper}>
-          <Text style={styles.appVersion}>
-            Version: {config.app_version}
+          <Text variant="bodyMedium">
+            Version: {appVersion}
             {tag}
           </Text>
         </View>
@@ -205,26 +183,24 @@ const Setting = () => {
         visible={lngDialog}
         hideDialog={closeLngDialog}
         changeLanguage={changeLanguage}
-        initValue={i18n.languages[0]}
       />
       <ThemeDialog
         visible={themeDialog}
         hideDialog={closeThemeDialog}
         changeTheme={changeThemeMode}
-        initValue={themeCtx.mode}
       />
       <CurrencyPicker
         currencyPickerRef={(ref) => {
           currencyPickerRef = ref;
         }}
         enable={false}
-        darkMode={false}
-        currencyCode={currencyCtx.currency}
+        darkMode={theme === 'dark'}
+        currencyCode={currency}
         showFlag={true}
         showCurrencyName={true}
         showCurrencyCode={true}
         onSelectCurrency={(data) => {
-          currencyCtx.toggleCurrency(data.code);
+          changeCurrency(data.code);
         }}
         showNativeSymbol={false}
         showSymbol={false}
@@ -238,17 +214,28 @@ const Setting = () => {
         }}
         modalStyle={{
           container: {
-            ...styles.currencyContainer,
+            backgroundColor: Colors.background[theme],
             paddingTop: insets.top,
             paddingBottom: insets.bottom,
           },
-          searchStyle: styles.currencySearch,
-          tileStyle: styles.currencyText,
+          searchStyle: {
+            backgroundColor: isDark ? MD2Colors.grey800 : MD2Colors.grey100,
+          },
+          tileStyle: {
+            fontFamily: Fonts.medium,
+            color: isDark ? MD2Colors.white : MD2Colors.black,
+          },
           itemStyle: {
-            itemContainer: styles.currencyContainer,
+            itemContainer: { backgroundColor: Colors.background[theme] },
             flagWidth: 25,
-            currencyCodeStyle: styles.currencyText,
-            currencyNameStyle: styles.currencyText,
+            currencyCodeStyle: {
+              fontFamily: Fonts.medium,
+              color: isDark ? MD2Colors.white : MD2Colors.black,
+            },
+            currencyNameStyle: {
+              fontFamily: Fonts.medium,
+              color: isDark ? MD2Colors.white : MD2Colors.black,
+            },
             symbolStyle: {},
             symbolNativeStyle: {},
           },

@@ -30,7 +30,7 @@ export default defineConfig([
     rules: {
       'react-native/no-unused-styles': 2,
       'react-native/split-platform-components': 2,
-      'react-native/no-inline-styles': 2,
+      'react-native/no-inline-styles': 'off',
       'react-native/sort-styles': [
         'error',
         'asc',
@@ -43,14 +43,12 @@ export default defineConfig([
   },
   {
     files: ['**/*.{js,mjs,cjs}'],
-    extends: [importPlugin.flatConfigs.recommended],
+    extends: [importPlugin.flatConfigs['react-native']],
     rules: {
-      'import/namespace': 'off',
-      'import/no-unresolved': 'off',
-      'import/named': 'off',
       'import/order': [
         'error',
         {
+          'newlines-between': 'always',
           groups: [
             ['builtin', 'external'],
             ['internal', 'parent', 'sibling', 'index'],

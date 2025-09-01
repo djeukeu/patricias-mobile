@@ -2,26 +2,26 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as RNLocalize from 'react-native-localize';
 
-const key = 'userCurrency';
+const STORAGE_KEY = 'app.currency';
 
 export const getCurrency = () => {
   const currency = RNLocalize.getCurrencies()[0];
   return currency;
 };
 
-export const saveCurrency = async (currency) => {
+export const storeCurrency = async (currency) => {
   try {
-    await AsyncStorage.setItem(key, currency);
+    await AsyncStorage.setItem(STORAGE_KEY, currency);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
-export const getStoreCurrency = async () => {
+export const restoreCurrency = async () => {
   try {
-    const value = await AsyncStorage.getItem(key);
+    const value = await AsyncStorage.getItem(STORAGE_KEY);
     return value;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };

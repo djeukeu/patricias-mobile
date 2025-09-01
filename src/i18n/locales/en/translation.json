@@ -11,7 +11,7 @@
     "currency": "Currency",
     "language": "Language",
     "appearance": "Appearance",
-    "newsletter": "Newsletter",
+    "newsletter": "Blog",
     "help": "Help",
     "privacy": "Privacy Policy",
     "terms": "Terms and Conditions",
@@ -19,11 +19,15 @@
     "light": "Light",
     "dark": "Dark",
     "chooseLanguange": "Choose a Language",
+    "chooseTheme": "Choose a Theme",
     "cancel": "Cancel",
     "en": "English",
     "fr": "French",
     "select": "Change currency",
     "searchCurrency": "Search currency",
     "system": "System"
+  },
+  "wislist": {
+    "txt": "Saved Products"
   }
 }

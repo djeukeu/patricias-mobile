@@ -1,18 +1,32 @@
 import React from 'react';
+
 import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, Platform } from 'react-native';
 import { MD2Colors } from 'react-native-paper';
+
 import CartNavigator from './CartNavigator';
 import HomeNavigator from './HomeNavigator';
 import SettingNavigator from './SettingNavigator';
 import WishlistNavigator from './WishlistNavigator';
 import TabBar from '../../components/TabBar';
-import Colors from '../../constants/Colors';
-import Fonts from '../../constants/Fonts';
+import { useAppTheme } from '../../hooks';
 
 const Tab = createBottomTabNavigator();
+
+const TabIcon = ({ focused, name, color }) => {
+  const { theme } = useAppTheme();
+
+  return (
+    <MaterialDesignIcons
+      name={focused ? name : `${name}-outline`}
+      size={24}
+      color={
+        focused ? (theme == 'dark' ? MD2Colors.black : MD2Colors.white) : color
+      }
+    />
+  );
+};
 
 const TabNavigator = () => {
   const { t } = useTranslation();
@@ -20,28 +34,15 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      tabBar={(props) => (
-        <TabBar
-          {...props}
-          activeColor={Colors.primary}
-          inactiveColor={Colors.black}
-          theme={{ fonts: Fonts }}
-          activeIndicatorStyle={{ backgroundColor: Colors.primary }}
-          barStyle={styles.barStyle}
-        />
-      )}
-      screenOptions={{ headerShown: false }}>
+      tabBar={(props) => <TabBar {...props} />}
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Tab.Screen
         name="Home"
         component={HomeNavigator}
         options={{
-          tabBarIcon: (p) => (
-            <MaterialDesignIcons
-              name={p.focused ? 'home' : 'home-outline'}
-              size={24}
-              color={p.focused ? Colors.white : p.color}
-            />
-          ),
+          tabBarIcon: (p) => <TabIcon {...p} name="home" />,
           tabBarLabel: t('tabs.home'),
         }}
       />
@@ -49,13 +50,7 @@ const TabNavigator = () => {
         name="Wishlist"
         component={WishlistNavigator}
         options={{
-          tabBarIcon: (p) => (
-            <MaterialDesignIcons
-              name={p.focused ? 'shopping' : 'shopping-outline'}
-              size={24}
-              color={p.focused ? Colors.white : p.color}
-            />
-          ),
+          tabBarIcon: (p) => <TabIcon {...p} name="shopping" />,
           tabBarLabel: t('tabs.wishlist'),
         }}
       />
@@ -63,13 +58,7 @@ const TabNavigator = () => {
         name="Cart"
         component={CartNavigator}
         options={{
-          tabBarIcon: (p) => (
-            <MaterialDesignIcons
-              name={p.focused ? 'cart' : 'cart-outline'}
-              size={24}
-              color={p.focused ? Colors.white : p.color}
-            />
-          ),
+          tabBarIcon: (p) => <TabIcon {...p} name="cart" />,
           tabBarLabel: t('tabs.cart'),
         }}
       />
@@ -77,30 +66,12 @@ const TabNavigator = () => {
         name="Setting"
         component={SettingNavigator}
         options={{
-          tabBarIcon: (p) => (
-            <MaterialDesignIcons
-              name={p.focused ? 'cog' : 'cog-outline'}
-              size={24}
-              color={p.focused ? Colors.white : p.color}
-            />
-          ),
+          tabBarIcon: (p) => <TabIcon {...p} name="cog" />,
           tabBarLabel: t('tabs.setting'),
         }}
       />
     </Tab.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  barStyle: {
-    backgroundColor: Colors.white,
-    borderTopColor: Platform.OS === 'android' && MD2Colors.grey500,
-    borderTopWidth: Platform.OS === 'android' && 0.5,
-    shadowColor: Colors.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3,
-  },
-});
 
 export default TabNavigator;
