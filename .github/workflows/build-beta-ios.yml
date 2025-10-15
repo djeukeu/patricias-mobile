@@ -51,6 +51,9 @@ jobs:
         run: |
           yarn
           cd ios && pod install
+      - name: Write environment file
+        run: |
+          echo '${{ secrets.ENV }}' > .env
       - name: Write google services file
         run: |
           cd ios/patricias
@@ -74,10 +77,6 @@ jobs:
         run: |
           yarn ios:beta
         env:
-          APP_ENV: ${{ vars.APP_ENV }}
-          WOOCOMMERCE_URL: ${{ secrets.WOOCOMMERCE_URL }}
-          WOOCOMMERCE_CLIENT_KEY: ${{ secrets.WOOCOMMERCE_CLIENT_KEY }}
-          WOOCOMMERCE_CLIENT_SECRET: ${{ secrets.WOOCOMMERCE_CLIENT_SECRET }}
           VERSION_CODE: ${{ steps.version_code.outputs.number }}
           MAJOR_VERSION: ${{ steps.gitversion.outputs.major }}
           MINOR_VERSION: ${{ steps.gitversion.outputs.minor }}
