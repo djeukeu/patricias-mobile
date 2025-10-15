@@ -7,7 +7,6 @@ on:
       - develop
 
 env:
-  APP_ENV: ${{ vars.APP_ENV }}
   IOS_TEST_GROUPS: ${{ vars.IOS_TEST_GROUPS }}
   IOS_PACKAGE_NAME: ${{ secrets.IOS_PACKAGE_NAME }}
   MATCH_GIT_TOKEN: ${{ secrets.MATCH_GIT_TOKEN }}
@@ -17,9 +16,6 @@ env:
   APPLE_KEY_ID: ${{ secrets.APPLE_KEY_ID }}
   APPLE_KEY_ISSUER_ID: ${{ secrets.APPLE_KEY_ISSUER_ID }}
   FIREBASE_IOS_ID: ${{ secrets.FIREBASE_IOS_ID }}
-  WOOCOMMERCE_URL: ${{ secrets.WOOCOMMERCE_URL }}
-  WOOCOMMERCE_CLIENT_KEY: ${{ secrets.WOOCOMMERCE_CLIENT_KEY }}
-  WOOCOMMERCE_CLIENT_SECRET: ${{ secrets.WOOCOMMERCE_CLIENT_SECRET }}
 
 jobs:
   ios:
@@ -78,6 +74,10 @@ jobs:
         run: |
           yarn ios:beta
         env:
+          APP_ENV: ${{ vars.APP_ENV }}
+          WOOCOMMERCE_URL: ${{ secrets.WOOCOMMERCE_URL }}
+          WOOCOMMERCE_CLIENT_KEY: ${{ secrets.WOOCOMMERCE_CLIENT_KEY }}
+          WOOCOMMERCE_CLIENT_SECRET: ${{ secrets.WOOCOMMERCE_CLIENT_SECRET }}
           VERSION_CODE: ${{ steps.version_code.outputs.number }}
           MAJOR_VERSION: ${{ steps.gitversion.outputs.major }}
           MINOR_VERSION: ${{ steps.gitversion.outputs.minor }}

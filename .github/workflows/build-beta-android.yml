@@ -7,14 +7,11 @@ on:
       - develop
 
 env:
-  APP_ENV: ${{ vars.APP_ENV }}
   FIREBASE_ANDROID_TEST_GROUP: ${{ vars.FIREBASE_ANDROID_TEST_GROUP }}
   ANDROID_PACKAGE_NAME: ${{ secrets.ANDROID_PACKAGE_NAME }}
   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
   FIREBASE_ANDROID_ID: ${{ secrets.FIREBASE_ANDROID_ID }}
-  WOOCOMMERCE_URL: ${{ secrets.WOOCOMMERCE_URL }}
-  WOOCOMMERCE_CLIENT_KEY: ${{ secrets.WOOCOMMERCE_CLIENT_KEY }}
-  WOOCOMMERCE_CLIENT_SECRET: ${{ secrets.WOOCOMMERCE_CLIENT_SECRET }}
+
 
 jobs:
   android:
@@ -70,7 +67,11 @@ jobs:
       - name: Fastlane Build
         run: |
           yarn android:beta
-        env:
+        env:  
+          APP_ENV: ${{ vars.APP_ENV }}
+          WOOCOMMERCE_URL: ${{ secrets.WOOCOMMERCE_URL }}
+          WOOCOMMERCE_CLIENT_KEY: ${{ secrets.WOOCOMMERCE_CLIENT_KEY }}
+          WOOCOMMERCE_CLIENT_SECRET: ${{ secrets.WOOCOMMERCE_CLIENT_SECRET }}
           VERSION_CODE: ${{ steps.version_code.outputs.number }}
           MAJOR_VERSION: ${{ steps.gitversion.outputs.major }}
           MINOR_VERSION: ${{ steps.gitversion.outputs.minor }}
