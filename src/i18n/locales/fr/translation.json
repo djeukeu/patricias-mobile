@@ -6,7 +6,7 @@
     "setting": "Paramètres"
   },
   "back": "Retour",
-    "setting": {
+  "setting": {
     "txt": "Paramètres",
     "currency": "Devise",
     "language": "Langue",
@@ -21,7 +21,7 @@
     "chooseLanguange": "Choisissez une langue",
     "chooseTheme": "Choisissez un thème",
     "cancel": "Annuler",
-   "en": "Anglais",
+    "en": "Anglais",
     "fr": "Français",
     "select": "Changer de devise",
     "searchCurrency": "Rechercher la devise",
@@ -29,5 +29,8 @@
   },
   "wislist": {
     "txt": "Produits enregistrés"
+  },
+  "home": {
+    "txt": "Discover"
   }
 }
