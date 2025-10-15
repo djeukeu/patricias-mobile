@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { MD2Colors } from 'react-native-paper';
 
-import HeaderLeft from '../../../components/HeaderLeft';
+import HeaderRight from '../../../components/HeaderRight';
 import Colors from '../../../constants/Colors';
 import { useAppTheme } from '../../../hooks';
 import Home from '../../../screens/Home';
@@ -31,7 +31,7 @@ const HomeNavigator = () => {
           headerTitleStyle: {
             fontSize: 20,
           },
-          headerRight: (props) => <HeaderLeft {...props} />,
+          headerRight: (props) => <HeaderRight {...props} />,
         }}
       />
     </Stack.Navigator>
