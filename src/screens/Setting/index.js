@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react';
 
 import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import { useTranslation } from 'react-i18next';
-import { View, Linking } from 'react-native';
+import { View } from 'react-native';
 import CurrencyPicker from 'react-native-currency-picker';
 import { List, MD2Colors, Text } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -33,7 +33,7 @@ const ListRightItem = ({ text, textTransform }) => {
   );
 };
 
-const Setting = () => {
+const Setting = (props) => {
   const { t, i18n } = useTranslation();
   const [lngDialog, setLngDialog] = useState(false);
   const [themeDialog, setThemeDialog] = useState(false);
@@ -41,7 +41,6 @@ const Setting = () => {
   const { changePreference, preference, theme, isDark } = useAppTheme();
   const { changeCurrency, currency } = useAppCurrency();
   const appVersion = VersionCheck.getCurrentVersion();
-  const iconColor = isDark ? MD2Colors.white : Colors.primary;
 
   let tag;
   if (config.env === 'development') {
@@ -72,106 +71,119 @@ const Setting = () => {
     changePreference(mode);
   };
 
+  const itemList = [
+    {
+      id: 'currency',
+      title: t('setting.currency'),
+      icon: 'currency-usd',
+      onPress: () => {
+        currencyPickerRef.open();
+      },
+      right: () => <ListRightItem text={currency} textTransform="uppercase" />,
+    },
+    {
+      id: 'language',
+      title: t('setting.language'),
+      icon: 'translate',
+      onPress: () => {
+        setLngDialog(true);
+      },
+      right: () => (
+        <ListRightItem
+          text={t(`setting.${i18n.languages[0]}`)}
+          textTransform="capitalize"
+        />
+      ),
+    },
+    {
+      id: 'appearance',
+      title: t('setting.appearance'),
+      icon: 'theme-light-dark',
+      onPress: () => {
+        setThemeDialog(true);
+      },
+      right: () => (
+        <ListRightItem text={preference} textTransform="capitalize" />
+      ),
+    },
+    {
+      id: 'newsletter',
+      title: t('setting.newsletter'),
+      icon: 'newspaper',
+      onPress: () => {
+        props.navigation.navigate('WebScreen', {
+          uri: config.api_url + 'blog',
+        });
+      },
+      right: ListRightItem,
+    },
+    {
+      id: 'help',
+      title: t('setting.help'),
+      icon: 'help-circle-outline',
+      onPress: () => {
+        props.navigation.navigate('WebScreen', {
+          uri: config.api_url + 'contact',
+        });
+      },
+      right: ListRightItem,
+    },
+    {
+      id: 'privacy',
+      title: t('setting.privacy'),
+      icon: 'shield-lock',
+      onPress: () => {
+        props.navigation.navigate('WebScreen', {
+          uri: config.api_url + 'privacy-policy',
+        });
+      },
+      right: ListRightItem,
+    },
+    {
+      id: 'terms',
+      title: t('setting.terms'),
+      icon: 'file-document',
+      onPress: () => {
+        props.navigation.navigate('WebScreen', {
+          uri: config.api_url + 'refund_returns',
+        });
+      },
+      right: ListRightItem,
+    },
+    {
+      id: 'faqs',
+      title: t('setting.faqs'),
+      icon: 'comment-question-outline',
+      onPress: () => {
+        props.navigation.navigate('WebScreen', {
+          uri: config.api_url + 'faq',
+        });
+      },
+      right: ListRightItem,
+    },
+  ];
+
   return (
     <>
       <View style={styles.screen}>
-        <List.Item
-          title={t('setting.currency')}
-          left={(props) => (
-            <List.Icon {...props} icon="currency-usd" color={iconColor} />
-          )}
-          right={() => (
-            <ListRightItem text={currency} textTransform="uppercase" />
-          )}
-          onPress={() => {
-            currencyPickerRef.open();
-          }}
-        />
-        <List.Item
-          title={t('setting.language')}
-          left={(props) => (
-            <List.Icon {...props} icon="translate" color={iconColor} />
-          )}
-          right={() => (
-            <ListRightItem
-              text={t(`setting.${i18n.languages[0]}`)}
-              textTransform="capitalize"
-            />
-          )}
-          onPress={() => {
-            setLngDialog(true);
-          }}
-        />
-        <List.Item
-          title={t('setting.appearance')}
-          left={(props) => (
-            <List.Icon {...props} icon="theme-light-dark" color={iconColor} />
-          )}
-          right={() => (
-            <ListRightItem text={preference} textTransform="capitalize" />
-          )}
-          onPress={() => {
-            setThemeDialog(true);
-          }}
-        />
-        <List.Item
-          title={t('setting.newsletter')}
-          left={(props) => (
-            <List.Icon {...props} icon="newspaper" color={iconColor} />
-          )}
-          right={ListRightItem}
-          onPress={() => {
-            Linking.openURL(config.api_url + 'blog');
-          }}
-        />
-        <List.Item
-          title={t('setting.help')}
-          left={(props) => (
-            <List.Icon
-              {...props}
-              icon="help-circle-outline"
-              color={iconColor}
-            />
-          )}
-          right={ListRightItem}
-          onPress={() => {
-            Linking.openURL(config.api_url + 'contact');
-          }}
-        />
-        <List.Item
-          title={t('setting.privacy')}
-          left={(props) => (
-            <List.Icon {...props} icon="shield-lock" color={iconColor} />
-          )}
-          right={ListRightItem}
-          onPress={() => {
-            Linking.openURL(config.api_url + 'privacy-policy');
-          }}
-        />
-        <List.Item
-          title={t('setting.terms')}
-          left={(props) => (
-            <List.Icon {...props} icon="file-document" color={iconColor} />
-          )}
-          right={ListRightItem}
-          onPress={() => {
-            Linking.openURL(config.api_url + 'refund_returns');
-          }}
-        />
-        <List.Item
-          title={t('setting.faqs')}
-          left={(props) => (
-            <List.Icon
-              {...props}
-              icon="comment-question-outline"
-              color={iconColor}
-            />
-          )}
-          right={ListRightItem}
-          onPress={() => {
-            Linking.openURL(config.api_url + 'faq');
-          }}
-        />
+        {itemList.map((item) => {
+          return (
+            <Fragment key={item.id}>
+              <List.Item
+                title={item.title}
+                left={(p) => (
+                  <List.Icon
+                    {...p}
+                    icon={item.icon}
+                    color={isDark ? MD2Colors.white : Colors.primary}
+                  />
+                )}
+                right={item.right}
+                onPress={item.onPress}
+              />
+            </Fragment>
+          );
+        })}
         <View style={styles.versionWrapper}>
           <Text variant="bodyMedium">
             Version: {appVersion}
