@@ -49,7 +49,7 @@ jobs:
           npm install -g firebase-tools
       - name: Write environment file
         run: |
-          echo '${{ secrets.ENV }}' > .env
+          echo '${{ secrets.ENV }}' > .env.staging
       - name: Write google services file
         run: |
           cd android/app
