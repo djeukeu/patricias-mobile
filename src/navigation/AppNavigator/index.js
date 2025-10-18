@@ -1,13 +1,20 @@
 import React from 'react';
 
+import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { MD2Colors, IconButton } from 'react-native-paper';
 
-import Web from '../../Web';
+import Colors from '../../constants/Colors';
+import { useAppTheme } from '../../hooks';
+import Web from '../../screens/Web';
 import TabNavigator from '../TabNavigator';
 
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
+  const { isDark } = useAppTheme();
+  const navigation = useNavigation();
+
   return (
     <Stack.Navigator initialRouteName="Tab">
       <Stack.Screen
@@ -19,8 +26,20 @@ const AppNavigator = () => {
         name="WebScreen"
         component={Web}
         options={{
-          animation: 'slide_from_right',
+          headerStyle: {
+            backgroundColor: isDark ? MD2Colors.black : Colors.primary,
+          },
           headerTitle: '',
+          presentation: 'modal',
+          headerLeft: () => (
+            <IconButton
+              icon="close"
+              size={20}
+              onPress={() => {
+                navigation.goBack();
+              }}
+            />
+          ),
         }}
       />
     </Stack.Navigator>
