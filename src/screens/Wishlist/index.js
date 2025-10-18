@@ -2,20 +2,18 @@ import React from 'react';
 
 import { View, FlatList } from 'react-native';
 
+import { wishlist } from './dummy';
 import styles from './styles';
-import Product from '../../components/Product';
-
-const dataList = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+import WishlistItem from '../../components/WishlistItem';
 
 const Wishlist = () => {
   return (
     <View style={styles.screen}>
       <FlatList
-        data={dataList}
+        data={wishlist}
         showsVerticalScrollIndicator={false}
-        keyExtractor={(item, index) => index}
-        // keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Product item={item} />}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <WishlistItem item={item} />}
       />
     </View>
   );
