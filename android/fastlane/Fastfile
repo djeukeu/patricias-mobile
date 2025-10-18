@@ -5,10 +5,7 @@ platform :android do
   desc "Submit a new Beta apk for testing"
   lane :beta do
 
-    gradle(
-    task: 'assemble',
-    build_type: 'Release'
-  )
+    gradle(task: "clean app:assembleRelease")
 
     firebase_app_distribution(
       app: ENV['FIREBASE_ANDROID_ID'],
