@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { MD2Colors } from 'react-native-paper';
 
 import CartNavigator from './CartNavigator';
+import CategoryNavigator from './CategoryNavigator';
 import HomeNavigator from './HomeNavigator';
 import SettingNavigator from './SettingNavigator';
 import WishlistNavigator from './WishlistNavigator';
@@ -44,6 +45,14 @@ const TabNavigator = () => {
         options={{
           tabBarIcon: (p) => <TabIcon {...p} name="home" />,
           tabBarLabel: t('tabs.home'),
+        }}
+      />
+      <Tab.Screen
+        name="Category"
+        component={CategoryNavigator}
+        options={{
+          tabBarIcon: (p) => <TabIcon {...p} name="view-list" />,
+          tabBarLabel: t('tabs.category'),
         }}
       />
       <Tab.Screen

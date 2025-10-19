@@ -8,24 +8,24 @@ import HeaderRight from '../../../components/HeaderRight';
 import Colors from '../../../constants/Colors';
 import Fonts from '../../../constants/Fonts';
 import { useAppTheme } from '../../../hooks';
-import Setting from '../../../screens/Setting';
+import Category from '../../../screens/Category';
 
 const Stack = createNativeStackNavigator();
 
-const SettingNavigator = () => {
-  const { t } = useTranslation();
+const CategoryNavigator = () => {
   const { isDark } = useAppTheme();
+  const { t } = useTranslation();
 
   return (
-    <Stack.Navigator initialRouteName="SettingScreen">
+    <Stack.Navigator initialRouteName="CategoryScreen">
       <Stack.Screen
-        name="SettingScreen"
-        component={Setting}
+        name="CategoryScreen"
+        component={Category}
         options={{
           headerStyle: {
             backgroundColor: isDark ? MD2Colors.black : Colors.primary,
           },
-          headerTitle: t('setting.txt'),
+          headerTitle: t('category.txt'),
           headerTitleAlign: 'left',
           headerTitleStyle: {
             fontFamily: Fonts.semiBold,
@@ -39,4 +39,4 @@ const SettingNavigator = () => {
   );
 };
 
-export default SettingNavigator;
+export default CategoryNavigator;
