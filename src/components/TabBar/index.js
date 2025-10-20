@@ -62,6 +62,11 @@ const TabBar = ({
 
         return label;
       }}
+      getBadge={({ route }) => {
+        const { options } = descriptors[route.key];
+        const badge = options.tabBarBadge;
+        return badge;
+      }}
     />
   );
 };
