@@ -2,9 +2,14 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   screen: {
-    alignItems: 'center',
     flex: 1,
-    justifyContent: 'center',
+  },
+  subTotal: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 8,
+    paddingHorizontal: 12,
   },
 });
 

@@ -69,6 +69,7 @@ const TabNavigator = () => {
         options={{
           tabBarIcon: (p) => <TabIcon {...p} name="cart" />,
           tabBarLabel: t('tabs.cart'),
+          tabBarBadge: '2',
         }}
       />
       <Tab.Screen

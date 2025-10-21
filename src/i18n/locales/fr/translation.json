@@ -36,5 +36,10 @@
   },
   "category": {
     "txt": "Catégories de produits"
+  },
+  "cart": {
+    "txt": "Panier",
+    "subtotal": "Sous-total",
+    "checkout": "Checkout"
   }
 }

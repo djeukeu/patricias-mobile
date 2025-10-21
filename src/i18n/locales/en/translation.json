@@ -36,5 +36,10 @@
   },
   "category": {
     "txt": "Product categories"
+  },
+  "cart": {
+    "txt": "Cart",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout"
   }
 }
