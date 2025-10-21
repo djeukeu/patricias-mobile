@@ -1,0 +1,65 @@
+import React from 'react';
+
+import { View, Image, TouchableOpacity } from 'react-native';
+import DropShadow from 'react-native-drop-shadow';
+import InputSpinner from 'react-native-input-spinner';
+import { Text, IconButton, MD2Colors } from 'react-native-paper';
+
+import style from './styles';
+import Colors from '../../constants/Colors';
+import { useAppTheme } from '../../hooks';
+import CurrencyFormater from '../CurrencyFormater';
+
+const CartItem = ({ item }) => {
+  const { theme } = useAppTheme();
+  const styles = style(theme);
+
+  return (
+    <DropShadow style={styles.shadowStyle}>
+      <TouchableOpacity
+        style={styles.container}
+        activeOpacity={0.85}
+        onPress={() => {}}>
+        <View style={styles.imageWrapper}>
+          <Image source={{ uri: item.image }} style={styles.image} />
+        </View>
+        <View style={styles.content}>
+          <Text variant="titleSmall" numberOfLines={2}>
+            {item.name}
+          </Text>
+          <CurrencyFormater
+            amount={item.price}
+            renderText={(value) => (
+              <Text variant="titleSmall" style={styles.price}>
+                {value}
+              </Text>
+            )}
+          />
+        </View>
+        <View style={styles.iconWrapper}>
+          <IconButton
+            icon="delete"
+            mode="contained"
+            size={16}
+            onPress={() => {}}
+          />
+          <InputSpinner
+            initialValue={item.quantity}
+            min={1}
+            onChange={(num) => {
+              console.log(num);
+            }}
+            width={80}
+            height={32}
+            style={styles.inputSpinnerStyle}
+            buttonStyle={styles.inputSpinnerBtnStyle}
+            colorPress={Colors.transparent}
+            textColor={MD2Colors.white}
+          />
+        </View>
+      </TouchableOpacity>
+    </DropShadow>
+  );
+};
+
+export default CartItem;
