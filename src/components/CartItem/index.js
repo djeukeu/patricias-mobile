@@ -2,13 +2,12 @@ import React from 'react';
 
 import { View, Image, TouchableOpacity } from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
-import InputSpinner from 'react-native-input-spinner';
-import { Text, IconButton, MD2Colors } from 'react-native-paper';
+import { Text, IconButton } from 'react-native-paper';
 
 import style from './styles';
-import Colors from '../../constants/Colors';
 import { useAppTheme } from '../../hooks';
 import CurrencyFormater from '../CurrencyFormater';
+import InputSpinner from '../InputSpinner';
 
 const CartItem = ({ item }) => {
   const { theme } = useAppTheme();
@@ -49,12 +48,6 @@ const CartItem = ({ item }) => {
             onChange={(num) => {
               console.log(num);
             }}
-            width={80}
-            height={32}
-            style={styles.inputSpinnerStyle}
-            buttonStyle={styles.inputSpinnerBtnStyle}
-            colorPress={Colors.transparent}
-            textColor={MD2Colors.white}
           />
         </View>
       </TouchableOpacity>

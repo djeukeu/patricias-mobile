@@ -1,8 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { MD2Colors } from 'react-native-paper';
 
-import Colors from '../../constants/Colors';
-
 const styles = (theme) => {
   const isDark = theme === 'dark';
 
@@ -11,6 +9,7 @@ const styles = (theme) => {
       backgroundColor: isDark ? MD2Colors.grey900 : MD2Colors.white,
       borderRadius: 9,
       flexDirection: 'row',
+      marginHorizontal: 8,
       marginVertical: 4,
       padding: 8,
     },
@@ -31,13 +30,6 @@ const styles = (theme) => {
       height: 120,
       marginRight: 8,
       width: 120,
-    },
-    inputSpinnerBtnStyle: {
-      backgroundColor: Colors.primary,
-    },
-    inputSpinnerStyle: {
-      backgroundColor: Colors.primary,
-      marginVertical: 8,
     },
     price: {
       color: MD2Colors.grey500,
